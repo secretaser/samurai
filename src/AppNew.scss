@@ -1,0 +1,30 @@
+@import "template.scss";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,900);
+
+html {
+   overflow-y: scroll;
+}
+
+.appWrapper {
+   margin: 0 20px;
+   height: 100vh;
+}
+
+.appWrapper_content {
+   grid-area: content;
+   height: 100%;
+}
+
+.container {
+   padding-bottom: 20px;
+   font-family: Roboto, sans-serif;
+   max-width: 1200px;
+   margin: 0 auto;
+   display: grid;
+   grid-template-areas: "header header"
+      "navigation content";
+   grid-template-rows: auto 1fr;
+   grid-template-columns: 1fr 5fr;
+   gap: 20px;
+   height: 100%;
+}

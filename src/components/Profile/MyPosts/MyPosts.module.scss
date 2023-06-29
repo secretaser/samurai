@@ -1,0 +1,103 @@
+.posts {
+   display: flex;
+   flex-direction: column;
+   padding: 20px;
+   border-radius: 20px;
+   background-color: rgb(237, 237, 243);
+   box-shadow: 0 0 10px #0000006b;
+   position: relative;
+   margin-bottom: 20px;
+
+   h2 {
+      display: block;
+      font-size: 32px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+   }
+
+   &__new {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 10px;
+   }
+
+   &__input {
+      align-self: start;
+      flex: 1 1 auto;
+      display: block;
+      background-color: #00000023;
+      font-size: 20px;
+      padding: 10px 15px;
+      border-radius: 20px;
+      min-width: 100%;
+      min-height: 43px;
+      max-height: 43px;
+      resize: none;
+   }
+
+   &__button {
+      overflow: hidden;
+      align-self: end;
+      padding: 7px 20px;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 2px;
+      border-radius: 20px;
+      background-color: #454d5e;
+      box-shadow: 0 0 5px #0000006b;
+      color: #fff;
+      position: relative;
+      transition: all 0.2s ease-in-out;
+
+      &::before {
+         content: '';
+         position: absolute;
+         bottom: -5px;
+         left: -12px;
+         transform: rotate(30deg);
+         height: 60px;
+         width: 10px;
+         background-color: #fff;
+         transition: all 0.1s ease-in-out;
+      }
+
+      &:hover {
+         transition: all 0.1s ease-in-out;
+         box-shadow: 0 0 7px #000000;
+
+         &::before {
+            left: 120%;
+            transition: all 0.2s ease-in-out;
+         }
+      }
+   }
+
+   &__wall {}
+
+   &__post {
+      display: flex;
+      margin-bottom: 10px;
+      padding: 20px;
+      align-items: center;
+      gap: 20px;
+      background-color: #fff;
+      border-radius: 30px;
+      box-shadow: 0 0 5px #0000006b;
+   }
+
+   &__pic {
+      border-radius: 50%;
+      background-color: #454d5e;
+      min-width: 50px;
+      min-height: 50px;
+   }
+
+   &__posttext {
+      font-size: 20px;
+   }
+}

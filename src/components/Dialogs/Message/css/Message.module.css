@@ -1,0 +1,9 @@
+.message {
+  align-self: flex-start;
+  background-color: rgb(234, 234, 255);
+  border: 1px solid rgba(69, 77, 94, 0.2588235294);
+  padding: 2px 10px;
+  border-radius: 20px 20px 20px 0;
+  font-size: 16px;
+  line-height: 150%;
+}
