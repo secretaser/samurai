@@ -8,7 +8,6 @@ import Dialogs from './components/Dialogs/Dialogs';
 import Feed from './components/Feed/Feed';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import Sidebar from "./components/Sidebar/Sidebar";
 
 
 const App = (props) => {
@@ -18,7 +17,6 @@ const App = (props) => {
             <div className="container">
                <Header />
                <NavBar />
-               {/* <Sidebar /> */}
                <div className="appWrapper_content">
                   <Routes>
                      <Route path="/dialogs/*" element={<Dialogs dialogs={props.state.dialogsPage} />} />
