@@ -12,7 +12,6 @@ html {
 
 .appWrapper_content {
    grid-area: content;
-   height: 100%;
 }
 
 .container {
@@ -27,4 +26,5 @@ html {
    grid-template-columns: 1fr 5fr;
    gap: 20px;
    height: 100%;
+
 }

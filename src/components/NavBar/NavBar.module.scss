@@ -1,13 +1,17 @@
+.container {
+   grid-area: navigation;
+}
+
 .navigation {
+   margin-bottom: 20px;
    position: relative;
    border-radius: 20px;
    background-color: rgb(237, 237, 243);
    box-shadow: 0 0 10px #0000006b;
    padding: 10px 20px 10px 20px;
-   grid-area: navigation;
+
    z-index: 1;
    align-self: start;
-
 
    &__item {
       text-align: center;

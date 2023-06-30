@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,900);
 * {
   padding: 0;
   margin: 0;
@@ -89,28 +88,9 @@ h6 {
 }
 
 /* ------------------------------------------------------ */
-html {
-  overflow-y: scroll;
-}
-
-.appWrapper {
-  margin: 0 20px;
-  height: 100vh;
-}
-
-.appWrapper_content {
-  grid-area: content;
-}
-
 .container {
-  padding-bottom: 20px;
-  font-family: Roboto, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-areas: "header header" "navigation content";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr 5fr;
-  gap: 20px;
-  height: 100%;
+  border-radius: 20px;
+  background-color: rgb(237, 237, 243);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4196078431);
+  padding: 20px;
 }
