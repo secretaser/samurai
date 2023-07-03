@@ -77,7 +77,12 @@
       }
    }
 
-   &__wall {}
+   &__wall {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+
+   }
 
    &__post {
       display: flex;

@@ -10,10 +10,6 @@ html {
    height: 100vh;
 }
 
-.appWrapper_content {
-   grid-area: content;
-}
-
 .container {
    padding-bottom: 20px;
    font-family: Roboto, sans-serif;
@@ -23,8 +19,12 @@ html {
    grid-template-areas: "header header"
       "navigation content";
    grid-template-rows: auto 1fr;
-   grid-template-columns: 1fr 5fr;
+   grid-template-columns: minmax(150px, 200px) 6fr;
    gap: 20px;
    height: 100%;
+}
 
+.appWrapper_content {
+   grid-area: content;
+   height: 100%;
 }

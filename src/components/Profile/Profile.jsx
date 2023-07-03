@@ -5,8 +5,8 @@ import style from './css/Profile.module.css'
 const Profile = (props) => {
    return (
       <div>
-         <Profile__Info />
-         <MyPosts postData={props.posts.postData} />
+         <Profile__Info info={props.info} />
+         <MyPosts postData={props.posts.postData} info={props.info} addPost={props.addPost} />
 
       </div >
    )

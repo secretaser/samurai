@@ -70,6 +70,11 @@
   left: 120%;
   transition: all 0.2s ease-in-out;
 }
+.posts__wall {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
 .posts__post {
   display: flex;
   margin-bottom: 10px;

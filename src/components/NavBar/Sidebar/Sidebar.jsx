@@ -1,27 +1,11 @@
-import style from './css/Sidebar.module.css'
+import Sidebar_Item from './Sidebar_Item/Sidebar_Item';
+import style from './css/Sidebar.module.css';
 
 const Sidebar = (props) => {
+   let friends = props.friends.friendsList.map(f => <Sidebar_Item to={f.id} name={f.name} pic={f.avaLink} />);
    return (
       <div className={style.container}>
-         <div className={style.item}>
-            <div className={style.ava}>
-               <img src="" alt="" />
-            </div>
-            <div className={style.name}>Антоха</div>
-         </div>
-         <div className={style.item}>
-            <div className={style.ava}>
-               <img src="" alt="" />
-            </div>
-            <div className={style.name}>Антоха</div>
-         </div>
-         <div className={style.item}>
-            <div className={style.ava}>
-               <img src="" alt="" />
-            </div>
-            <div className={style.name}>Антоха</div>
-         </div>
-
+         {friends}
       </div>
    )
 };

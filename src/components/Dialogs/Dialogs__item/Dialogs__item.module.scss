@@ -7,27 +7,25 @@
    gap: 10px;
    transition: all 0.2s;
    color: #000;
+   overflow: hidden;
 
    &:hover {
       box-shadow: 0 0 10px #00000052;
       background-color: rgba(255, 255, 255, 0.137);
-      // color: #fff;
    }
 
 }
 
 .itemActive {
-
    border-radius: 20px;
    box-shadow: 0 0 10px #0000002f;
    padding: 15px;
    display: flex;
    gap: 10px;
    transition: all 0.2s;
-
    box-shadow: 0 0 10px #00000052;
    background-color: #454d5ef1;
-   color: #fff
+   color: #fff;
 }
 
 .ava {
@@ -47,14 +45,17 @@
 }
 
 .text {
+   flex: 1 1 auto;
+
    white-space: nowrap;
    overflow: hidden;
 }
 
 .name {
-   text-overflow: ellipsis;
    font-size: 18px;
    margin-bottom: 5px;
+   text-overflow: ellipsis;
+   overflow: hidden;
 }
 
 .message_preview {

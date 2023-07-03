@@ -1,6 +1,6 @@
 import style from './css/Profile__Info.module.css'
 
-const Profile__Info = () => {
+const Profile__Info = (props) => {
    return (
       <div>
          <div className={style.content__cover}>
@@ -11,7 +11,7 @@ const Profile__Info = () => {
             <div className={style.info}>
                <div className={style.info__item}>
                   <div className={style.info__photo}>
-                     <img src="https://kartinkof.club/uploads/posts/2022-04/1649621946_24-kartinkof-club-p-ugarnie-kartinki-dlya-avi-vk-26.jpg" alt="" />
+                     <img src={props.info.avaLink} alt="" />
                   </div>
                </div>
                <div className={style.info__item}>
