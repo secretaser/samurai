@@ -34,7 +34,6 @@ const Dialogs = (props) => {
 
             </div>
             <div className={style.input_container}>
-               {/* <textarea ref={inputElement} placeholder='Type your message...' value={'Хочу, бля, сказать этому ёбаному Обэме нахуй, блять ебомбаный... Ёбаный ты козёл нахуй, черножопый, блять, был бы ты человек нахуй. Твою дочку ебут нахуй, где-нибудь, нахуй, блять, она, наверно, учится хуй знает где нахуй, бля, а дети гибнут на Украине нахуй, почему так нахуй?'} /> */}
                <textarea ref={inputElement} placeholder='Type your message...' />
                <button onClick={sendMessage}>Send</button>
             </div>

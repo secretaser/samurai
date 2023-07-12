@@ -30,13 +30,22 @@
       flex: 1 1 auto;
       display: block;
       background-color: #00000023;
+      border: 1px solid #00000000;
+      color: #000;
       font-size: 20px;
       padding: 10px 15px;
       border-radius: 20px;
       min-width: 100%;
-      min-height: 43px;
-      max-height: 43px;
-      resize: none;
+      min-height: 45px;
+      max-height: 150px;
+      height: 45px;
+      resize: vertical;
+      transition: background-color 0.1s, border 0.1s;
+
+      &:focus {
+         background-color: #ffffffcc;
+         border: 1px solid #46464638;
+      }
    }
 
    &__button {

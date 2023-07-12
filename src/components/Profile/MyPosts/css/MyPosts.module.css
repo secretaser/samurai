@@ -28,13 +28,21 @@
   flex: 1 1 auto;
   display: block;
   background-color: rgba(0, 0, 0, 0.137254902);
+  border: 1px solid rgba(0, 0, 0, 0);
+  color: #000;
   font-size: 20px;
   padding: 10px 15px;
   border-radius: 20px;
   min-width: 100%;
-  min-height: 43px;
-  max-height: 43px;
-  resize: none;
+  min-height: 45px;
+  max-height: 150px;
+  height: 45px;
+  resize: vertical;
+  transition: background-color 0.1s, border 0.1s;
+}
+.posts__input:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(70, 70, 70, 0.2196078431);
 }
 .posts__button {
   overflow: hidden;
