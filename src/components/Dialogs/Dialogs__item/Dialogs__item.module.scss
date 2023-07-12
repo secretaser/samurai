@@ -18,13 +18,12 @@
 
 .itemActive {
    border-radius: 20px;
-   box-shadow: 0 0 10px #0000002f;
+   background-color: #454d5ef1;
+   box-shadow: 0 0 10px #00000052;
    padding: 15px;
    display: flex;
    gap: 10px;
    transition: all 0.2s;
-   box-shadow: 0 0 10px #00000052;
-   background-color: #454d5ef1;
    color: #fff;
 }
 
@@ -49,6 +48,8 @@
 
    white-space: nowrap;
    overflow: hidden;
+   text-overflow: ellipsis;
+
 }
 
 .name {
@@ -61,4 +62,5 @@
 .message_preview {
    text-overflow: ellipsis;
    overflow: hidden;
+   padding-bottom: 2px;
 }

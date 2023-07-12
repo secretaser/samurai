@@ -1,22 +1,19 @@
 import React from 'react';
 import Post from './Post/Post';
 import style from './css/MyPosts.module.css';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';
+import { addPostCreator, updateNewPostTextCreator } from '../../../redux/profile_reducer';
 
 const MyPosts = (props) => {
 
    let posts = props.postData.map(p => <Post likes={p.likes} text={p.text} />);
 
-   let newPostElement = React.createRef();
-
    let addPost = () => {
-      props.dispatch(addPostActionCreator());
-      props.dispatch(updateNewPostTextActionCreator(''));
+      props.dispatch(addPostCreator());
    };
 
-   let onChange = () => {
-      let text = newPostElement.current.value;
-      props.dispatch(updateNewPostTextActionCreator(text));
+   let onChange = (e) => {
+      let text = e.target.value;
+      props.dispatch(updateNewPostTextCreator(text));
    };
 
    return (
@@ -24,7 +21,7 @@ const MyPosts = (props) => {
          <h2>My posts</h2>
          <div className={style.posts__new}>
 
-            <textarea className={style.posts__input} onChange={onChange} ref={newPostElement} placeholder="Your news..." value={props.newPostText} />
+            <textarea className={style.posts__input} onChange={onChange} placeholder="Your news..." value={props.newPostText} />
             <button className={style.posts__button} onClick={addPost}>Post</button>
 
          </div>

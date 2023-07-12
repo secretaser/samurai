@@ -16,13 +16,12 @@
 
 .itemActive {
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1843137255);
+  background-color: rgba(69, 77, 94, 0.9450980392);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3215686275);
   padding: 15px;
   display: flex;
   gap: 10px;
   transition: all 0.2s;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3215686275);
-  background-color: rgba(69, 77, 94, 0.9450980392);
   color: #fff;
 }
 
@@ -45,6 +44,7 @@
   flex: 1 1 auto;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .name {
@@ -57,4 +57,5 @@
 .message_preview {
   text-overflow: ellipsis;
   overflow: hidden;
+  padding-bottom: 2px;
 }

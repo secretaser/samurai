@@ -15,7 +15,11 @@
 
 .messageMy,
 .messageOther {
+   display: inline-block;
    padding: 2px 10px;
    font-size: 16px;
    line-height: 150%;
+   // max-inline-size: 400px;
+   // overflow-wrap: break-word;
+
 }
