@@ -16,7 +16,7 @@ let store = {
             { id: 1, authorID: 228, likes: 226, text: 'Идем с братвой раздавать федуку по ебалу' },
             { id: 2, authorID: 228, likes: 1653, text: 'Нам Элджей сдал его адрес и попросил сказать, что его ждет назад тыкать в зад тыкать в зад' },
             { id: 3, authorID: 228, likes: 1498, text: 'Мой дисс гавно с не самыми красивыми рифмами' },
-         ]
+         ],
       },
       dialogsPage: {
          me: {
@@ -98,31 +98,26 @@ let store = {
       },
    },
 
+   getState() {
+      return this._state;
+   },
+
    _callSubscriber() {
       console.log('state changed');
    },
 
-
-   getState() {
-      return this._state;
-   },
    subscribe(observer) {
       this._callSubscriber = observer;
    },
-   dispatch(action) {
 
+   dispatch(action) {
       this._state.profilePage = profile_reducer(this._state.profilePage, action);
       this._state.dialogsPage = dialogs_reducer(this._state.dialogsPage, action);
       this._state.navBarData = navbar_reducer(this._state.navBarData, action);
 
       this._callSubscriber(this._state);
    },
-
-   getState() {
-      return this._state;
-   },
-}
-
+};
 
 
 window.store = store;

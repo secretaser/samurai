@@ -4,10 +4,9 @@ const Profile__Info = (props) => {
    return (
       <div>
          <div className={style.content__cover}>
-            <img src="https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg" alt="" />
+            <img src={props.info.coverLink} alt="" />
          </div>
          <div className={style.content__item}>
-            {/* <div className={style.content__info + ' ' + style.info}> */}
             <div className={style.info}>
                <div className={style.info__item}>
                   <div className={style.info__photo}>
@@ -15,12 +14,12 @@ const Profile__Info = (props) => {
                   </div>
                </div>
                <div className={style.info__item}>
-                  <div className={style.info__name}>Антон Г.</div>
+                  <div className={style.info__name}>{props.info.name}</div>
                   <div className={style.info__additional}>
-                     <p>Born: 7 january</p>
-                     <p>City: Jerusalem</p>
-                     <p>Education: none taken</p>
-                     <p>Employment: carpenter</p>
+                     <p>День рождения: {props.info.birthdate}</p>
+                     <p>Город: {props.info.city}</p>
+                     <p>Образование: {props.info.education}</p>
+                     <p>Работа: {props.info.job}</p>
                   </div>
                </div>
             </div>

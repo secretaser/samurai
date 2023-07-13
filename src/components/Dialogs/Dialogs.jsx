@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './css/Dialogs.module.css';
 import Dialogs__item from './Dialogs__item/Dialogs__item';
-import Chat from './Chat/Chat';
 import { Route, Routes } from 'react-router-dom';
+import Chat_container from './Chat/Chat_container';
 
 const Dialogs = (props) => {
 
@@ -11,7 +11,7 @@ const Dialogs = (props) => {
    };
 
    let dialogs = props.dialogs.dialogsData.map(dialog => <Dialogs__item name={dialog.name} id={dialog.id} lastMes={getLastMes(dialog)} avaLink={dialog.avaLink} />)
-   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat chat={chat} me={props.me} dispatch={props.dispatch} />} />)
+   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat_container store={props.store} chatID={chat.id} />} />)
 
    return (
       <div className={style.content}>
