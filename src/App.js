@@ -8,20 +8,23 @@ import Dialogs from './components/Dialogs/Dialogs';
 import Feed from './components/Feed/Feed';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
-   // debugger;
    return (
 
       <div className='appWrapper'>
          <div className="container">
             <Header />
+            {/* <NavBar /> */}
             <NavBar friends={props.state.navBarData} me={props.state.me} />
             <div className="appWrapper_content">
                <Routes>
-                  <Route path="/dialogs/*" element={<Dialogs dialogs={props.state.dialogsPage} me={props.state.me} dispatch={props.dispatch} />} />
-                  <Route path="/profile/*" element={<Profile posts={props.state.profilePage} info={props.state.me} dispatch={props.dispatch} />} />
+                  {/* <Route path="/dialogs/*" element={<DialogsContainer />} />
+                  <Route path="/profile/*" element={<Profile />} /> */}
+                  <Route path="/dialogs/*" element={<DialogsContainer store={props.store} />} />
+                  <Route path="/profile/*" element={<Profile store={props.store} />} />
 
                   <Route path="/feed/*" element={<Feed />} />
                   <Route path="/music/*" element={<Music />} />

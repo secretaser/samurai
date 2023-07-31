@@ -6,17 +6,18 @@ import { updateNewMessageTextCreator, sendMessageCreator } from '../../../redux/
 const Chat = (props) => {
    let messages = props.chat.mesData.map(message => <Message text={message.text} sender={message.authorID} me={props.me} />);
 
-   let sendMessage = (e) => {
+   let onSendMessage = (e) => {
       let text = props.chat.newMessageText;
       if (text) {
-         props.dispatch(sendMessageCreator(props.chat.id));
+         // props.dispatch(sendMessageCreator(props.chat.id));
+         props.sendMessage(props.chat.id);
          // props.dispatch(updateNewMessageTextCreator('', props.chat.id))
       }
    };
 
    let onChange = (e) => {
       let text = e.target.value;
-      props.dispatch(updateNewMessageTextCreator(text, props.chat.id));
+      props.changeMessageText(text, props.chat.id);
    };
 
    return (
@@ -32,7 +33,7 @@ const Chat = (props) => {
          </div>
          <div className={style.input_container}>
             <textarea onChange={onChange} placeholder='Type your message...' value={props.chat.newMessageText} />
-            <button onClick={sendMessage}>Send</button>
+            <button onClick={onSendMessage}>Send</button>
          </div>
       </div>
    )
