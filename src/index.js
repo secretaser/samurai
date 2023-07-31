@@ -1,4 +1,4 @@
-import store from './redux/state';
+import store from './redux/redux_store';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -22,3 +22,9 @@ let renderEntireTree = (state) => {
 renderEntireTree(store.getState());
 
 store.subscribe(renderEntireTree);
+
+// вот это хз зачем
+// store.subscribe(() => {
+//    let state = store.getState();
+//    renderEntireTree(state);
+// })
