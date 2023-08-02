@@ -1,5 +1,4 @@
 import style from './css/Post.module.css'
-import like1 from './img/like1.png'
 import like2 from './img/like2.png'
 
 const Post = (props) => {

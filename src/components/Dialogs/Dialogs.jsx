@@ -10,8 +10,8 @@ const Dialogs = (props) => {
       return dialog.mesData[dialog.mesData.length - 1].text;
    };
 
-   let dialogs = props.dialogs.dialogsData.map(dialog => <Dialogs__item name={dialog.name} id={dialog.id} lastMes={getLastMes(dialog)} avaLink={dialog.avaLink} />)
-   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat chat={chat} me={props.me} sendMessage={props.sendMessage} changeMessageText={props.changeMessageText} />} />)
+   let dialogs = props.dialogs.dialogsData.map(dialog => <Dialogs__item key={dialog.id} name={dialog.name} id={dialog.id} lastMes={getLastMes(dialog)} avaLink={dialog.avaLink} />)
+   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat key={chat.id} chat={chat} me={props.me} sendMessage={props.sendMessage} changeMessageText={props.changeMessageText} />} />)
 
    return (
       <div className={style.content}>

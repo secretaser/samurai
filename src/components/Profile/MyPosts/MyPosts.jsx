@@ -3,9 +3,7 @@ import Post from './Post/Post';
 import style from './css/MyPosts.module.css';
 
 const MyPosts = (props) => {
-
-
-   let posts = props.postData.map(p => <Post likes={p.likes} text={p.text} />);
+   let posts = props.postData.map(p => <Post key={p.id} likes={p.likes} text={p.text} />);
 
    let onAddPost = () => {
       props.addPost();
@@ -13,7 +11,7 @@ const MyPosts = (props) => {
 
    let onPostChange = (e) => {
       let text = e.target.value;
-      props.updateNewPostText(text);
+      props.onChange(text);
    };
 
    return (

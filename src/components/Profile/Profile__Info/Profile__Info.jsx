@@ -1,6 +1,7 @@
 import style from './css/Profile__Info.module.css'
 
 const Profile__Info = (props) => {
+
    return (
       <div>
          <div className={style.content__cover}>
