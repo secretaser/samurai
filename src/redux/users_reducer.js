@@ -1,29 +1,53 @@
-let initialState = [
-   {
-      name: "Jesus Christ",
-      id: 228,
-      avaLink: 'https://www.mirf.ru/wp-content/uploads/2020/05/Dogma-buddy-jesus-1024x576.jpg',
-      coverLink: 'https://midag.ru/wp-content/uploads/2022/11/religiya-%E2%84%9645_1-2.jpg',
-      birthDate: '7 january',
-      city: 'Jerusalem',
-      education: 'none',
-      employment: 'carpenter'
-   },
-   {
-      name: "Anton Gandon",
-      id: 229,
-      avaLink: 'https://www.i-igrushki.ru/upload/iblock/5e8/5e8e5ff4192ac87842af126f78aad74a.jpg',
-      coverLink: 'https://midag.ru/wp-content/uploads/2022/11/religiya-%E2%84%9645_1-2.jpg',
-      birthDate: '9 january',
-      city: 'Volgograd',
-      education: 'PTU',
-      employment: 'Engineer'
-   },
-]
+const SET_USERS = 'SET_USERS';
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+
+let initialState = {
+   users: [
+   ]
+}
 
 const users_reducer = (state = initialState, action) => {
 
-   return state
-}
+   switch (action.type) {
+
+      case SET_USERS: {
+         return { ...state, users: [...action.users] }
+      }
+
+      case FOLLOW: {
+         return {
+            ...state,
+            users: state.users.map(u => {
+               if (u.id === action.userId) {
+                  return { ...u, followed: true }
+               }
+               return u;
+            })
+         };
+      };
+
+      case UNFOLLOW: {
+         return {
+            ...state,
+            users: state.users.map(u => {
+               if (u.id === action.userId) {
+                  return { ...u, followed: false }
+               }
+               return u;
+            })
+         };
+      };
+
+      default:
+         return state;
+   }
+};
+
+export const setUsersAC = (users) => ({ type: SET_USERS, users: users });
+
+export const followAC = (userId) => ({ type: FOLLOW, userId: userId });
+
+export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId: userId });
 
 export default users_reducer;

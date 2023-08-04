@@ -1,14 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import logo from './logo.svg';
+import { Route, Routes } from "react-router-dom";
 import './css/AppNew.css';
 import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
 import Feed from './components/Feed/Feed';
-import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import NavBarContainer from "./components/NavBar/NavBarContainer";
 
 
 const App = (props) => {
@@ -18,19 +17,13 @@ const App = (props) => {
       <div className='appWrapper'>
          <div className="container">
             <Header />
-            {/* <NavBar /> */}
-            <NavBar friends={props.state.navBarData} me={props.state.me} />
+            <NavBarContainer />
             <div className="appWrapper_content">
                <Routes>
-                  {/* <Route path="/dialogs/*" element={<DialogsContainer store={props.store} />} /> */}
                   <Route path="/profile/*" element={<Profile />} />
-
-
-                  {/* <Route path="/profile/*" element={<Profile />} /> */}
+                  <Route path="/users/*" element={<UsersContainer />} />
                   <Route path="/dialogs/*" element={<DialogsContainer />} />
-
                   <Route path="/feed/*" element={<Feed />} />
-                  <Route path="/music/*" element={<Music />} />
                   <Route path="/settings/*" element={<Settings />} />
                </Routes>
             </div>
