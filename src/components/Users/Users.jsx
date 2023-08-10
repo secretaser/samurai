@@ -1,130 +1,95 @@
-import axios from 'axios';
-import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
 import style from './css/Users.module.css';
-import React from 'react';
+import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
-// const UsersOld = (props) => {
+const Users = (props) => {
+   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+   let buttons = [];
 
-//    let getUsers = () => {
-//       if (props.users.length === 0) {
-
-//          axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-//             props.setUsers(response.data.items)
-//          });
-//       }
-
-//       //    { 
-//       // id: 0, 
-//       // followed: true, 
-//       // name: "Лёха", 
-//       // surname: 'Бицепс', 
-//       // status: 'Люблю сосать', 
-//       // location: { 
-//       //    country: 'Russia', 
-//       //    city: 'Saint-P.' }, 
-//       // avaLink: "https://animatornsk.ru/wp-content/uploads/2018/02/minions_PNG66.png" 
-//       // },
-
-//       // {
-//       //    "name": "shms_",
-//       //    "id": 29705,
-//       //    "uniqueUrlName": null,
-//       //    "photos": {
-//       //      "small": null,
-//       //      "large": null
-//       //    },
-//       //    "status": null,
-//       //    "followed": false
-//       //  },
-
-//    };
-//    return (
-
-//       <div className={style.content}>
-
-//          {
-//             props.users.map(u => (<div key={u.id}>
-//                <div className={style.user_container}>
-
-//                   <div className={style.left}>
-//                      <div className={style.image}>
-//                         <img src={u.photos.small ?
-//                            u.photos.small : ProfileDefPicSmall} alt="" />
-//                      </div>
-//                      {u.followed ?
-//                         <button className={style.buttonDelete} onClick={() => { props.unfollow(u.id) }}>delete</button>
-//                         : <button className={style.buttonAdd} onClick={() => { props.follow(u.id) }}>add</button>
-//                      }
-
-//                   </div>
-
-//                   <div className={style.central}>
-//                      <div className={style.name}>{u.name}</div>
-//                      <div className={style.location}>
-//                         {'u.location.city'}, {'u.location.country'}
-//                      </div>
-//                      <div className={style.status}>{u.status}</div>
-//                   </div>
-
-//                   <div className={style.actions}>
-//                      <button className={style.buttonCome}>Зайти</button>
-//                      <button className={style.buttonSmoke}>Покурить</button>
-//                      <button className={style.buttonBother}>Доебаться</button>
-//                   </div>
-//                </div>
-//             </div>))
-//          }
-//          <button className={style.getButton} onClick={getUsers}>Get more Users</button>
-//       </div>
-//    )
-// }
-
-class Users extends React.Component {
-   componentDidMount() {
-      axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-         this.props.setUsers(response.data.items)
-      });
+   const cutText = (initName) => {
+      if (initName != null && initName.length > 16) {
+         return (initName.slice(0, 16) + '...');
+      } else return initName
    }
 
-   render() {
+   for (let i = 0; i < 5; i++) {
+      if (props.currentPage > 2 && pagesCount - props.currentPage >= 2) {
+         buttons.push(props.currentPage + i - 2);
+      } else if (props.currentPage === 2) {
+         buttons.push(props.currentPage + i - 1);
+      } else buttons.push(props.currentPage + i);
+   };
+
+   let allButtons = (buttons, currentPage, onPageChange, pagesCount) => {
       return (
-         <div className={style.content}>
-            {
-               this.props.users.map(u => (<div key={u.id}>
-                  <div className={style.user_container}>
-
-                     <div className={style.left}>
-                        <div className={style.image}>
-                           <img src={u.photos.small ?
-                              u.photos.small : ProfileDefPicSmall} alt="" />
-                        </div>
-                        {u.followed ?
-                           <button className={style.buttonDelete} onClick={() => { this.props.unfollow(u.id) }}>delete</button>
-                           : <button className={style.buttonAdd} onClick={() => { this.props.follow(u.id) }}>add</button>
-                        }
-                     </div>
-
-                     <div className={style.central}>
-                        <div className={style.name}>{u.name}</div>
-                        <div className={style.location}>
-                           {'u.location.city'}, {'u.location.country'}
-                        </div>
-                        <div className={style.status}>{u.status}</div>
-                     </div>
-
-                     <div className={style.actions}>
-                        <button className={style.buttonCome}>Зайти</button>
-                        <button className={style.buttonSmoke}>Покурить</button>
-                        <button className={style.buttonBother}>Доебаться</button>
-                     </div>
-                  </div>
-               </div>))}
-
-            <button className={style.getButton} onClick={this.getUsers}>Get more Users</button>
+         <div className={style.navButtons}>
+            <button onClick={() => { if (currentPage > 1) onPageChange(currentPage - 1) }} className={currentPage > 1 ? style.arrowBack : style.arrowBackInactive}></button>
+            {buttons.map(b => <button onClick={() => { onPageChange(b) }}
+               className={currentPage === b ? style.navButton_active : style.navButton}>{b}</button>
+            )}
+            <button onClick={() => { if (currentPage < pagesCount) onPageChange(currentPage + 1) }} className={currentPage < pagesCount ? style.arrowForward : style.arrowForwardInactive}></button>
          </div>
       )
    }
 
-}
+   // let follow = (userId) => {
+   //    props.toggle
+   //    axios.post(`https://social-network.samuraijs.com/api/1.0/follow${userId}`).then(response => {
+
+   //    })
+   // }
+
+   return <div className={style.content}>
+
+      {allButtons(buttons, props.currentPage, props.onPageChange, pagesCount)}
+
+      {props.users.map(u => (<div key={u.id}>
+         <div className={style.user_container}>
+
+            <div className={style.left}>
+               <div className={style.image}>
+                  <NavLink to={'/profile/' + u.id}>
+                     <img src={u.photos.small ?
+                        u.photos.small : ProfileDefPicSmall} alt="" />
+                  </NavLink>
+               </div>
+
+               {u.followed ?
+                  <button className={style.buttonDelete} onClick={() => {
+
+
+                     props.unfollow(u.id)
+
+
+                  }}>delete</button>
+                  : <button className={style.buttonAdd} onClick={() => {
+
+
+                     props.follow(u.id)
+
+
+                  }}>add</button>}
+            </div>
+
+            <div className={style.central}>
+               <NavLink to={'/profile/' + u.id}><div className={style.name}>{cutText(u.name)}</div></NavLink>
+               <div className={style.location}>
+                  {'u.location.city'}, {'u.location.country'}
+               </div>
+               <div className={style.status}>{cutText(u.status)}</div>
+            </div>
+
+            <div className={style.actions}>
+               <button className={style.buttonCome}>Зайти</button>
+               <button className={style.buttonSmoke}>Покурить</button>
+               <button className={style.buttonBother}>Доебаться</button>
+            </div>
+         </div>
+      </div>))}
+
+      {allButtons(buttons, props.currentPage, props.onPageChange, pagesCount)}
+   </div>
+};
 
 export default Users;

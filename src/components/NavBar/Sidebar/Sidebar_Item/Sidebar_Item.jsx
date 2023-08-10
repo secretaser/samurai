@@ -8,7 +8,6 @@ const Sidebar_Item = (props) => {
          <div className={style.ava}>
             <img src={props.pic} alt="" />
          </div>
-         <div className={style.name}>{props.name}</div>
       </NavLink>
    )
 };

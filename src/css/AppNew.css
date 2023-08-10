@@ -106,7 +106,7 @@ html {
   display: grid;
   grid-template-areas: "header header" "navigation content";
   grid-template-rows: auto 1fr;
-  grid-template-columns: minmax(150px, 200px) 6fr;
+  grid-template-columns: 200px 6fr;
   gap: 20px;
   height: 100%;
 }
@@ -114,4 +114,5 @@ html {
 .appWrapper_content {
   grid-area: content;
   height: 100%;
+  position: relative;
 }

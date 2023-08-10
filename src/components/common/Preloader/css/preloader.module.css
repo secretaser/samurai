@@ -1,0 +1,15 @@
+.picture img {
+  display: block;
+  margin: 100px auto;
+}
+
+.container {
+  user-select: none;
+  position: absolute;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5803921569);
+  border-radius: 20px;
+  overflow: hidden;
+}

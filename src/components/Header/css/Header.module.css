@@ -34,3 +34,27 @@
 .header__head a {
   color: #000;
 }
+.header__loginBlock {
+  font-size: 20px;
+}
+
+.logged {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.logged__pic {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.logged__pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.logged__pic a {
+  color: black;
+}

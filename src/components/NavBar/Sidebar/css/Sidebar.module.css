@@ -89,52 +89,16 @@ h6 {
 
 /* ------------------------------------------------------ */
 .container {
-  position: relative;
-  border-radius: 20px;
-  background-color: rgb(237, 237, 243);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4196078431);
-  padding: 10px 20px 10px 20px;
-  overflow: hidden;
-  z-index: 1;
-}
-.container .item:not(:first-child) {
-  border-top: 1px solid rgba(69, 77, 94, 0.2117647059);
-}
-
-.item {
-  border-radius: 5px;
-  color: #000;
-  padding: 5px 0 5px 5px;
+  overflow-y: auto;
+  overflow-x: auto;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.item::before {
-  content: "";
-  transition: all 0.15s;
-  display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(69, 77, 94, 0.8705882353);
-  z-index: -1;
-}
-.item:hover {
-  color: #fff;
-}
-.item:hover::before {
-  top: 0;
 }
 
 .ava {
-  flex: 0 0 35px;
-  height: 35px;
+  height: 50px;
+  width: 50px;
   background-color: #454d5e;
   border-radius: 50%;
   overflow: hidden;
@@ -144,10 +108,4 @@ h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.name {
-  font-size: 18px;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
