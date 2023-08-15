@@ -1,15 +1,14 @@
 import style from './css/Users.module.css';
 import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
-
+import { usersAPI } from '../../api/api';
 const Users = (props) => {
    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
    let buttons = [];
 
    const cutText = (initName) => {
       if (initName != null && initName.length > 16) {
-         return (initName.slice(0, 16) + '...');
+         return (initName.slice(0, 12) + '...');
       } else return initName
    }
 
@@ -33,13 +32,6 @@ const Users = (props) => {
       )
    }
 
-   // let follow = (userId) => {
-   //    props.toggle
-   //    axios.post(`https://social-network.samuraijs.com/api/1.0/follow${userId}`).then(response => {
-
-   //    })
-   // }
-
    return <div className={style.content}>
 
       {allButtons(buttons, props.currentPage, props.onPageChange, pagesCount)}
@@ -56,20 +48,11 @@ const Users = (props) => {
                </div>
 
                {u.followed ?
-                  <button className={style.buttonDelete} onClick={() => {
-
-
-                     props.unfollow(u.id)
-
-
-                  }}>delete</button>
-                  : <button className={style.buttonAdd} onClick={() => {
-
-
-                     props.follow(u.id)
-
-
-                  }}>add</button>}
+                  <button className={style.buttonDelete} disabled={props.followingInProgress
+                     .some(id => id === u.id) || !props.isAuth} onClick={() => props.unfollow(u.id)}>delete</button>
+                  :
+                  <button className={style.buttonAdd} disabled={props.followingInProgress
+                     .some(id => id === u.id) || !props.isAuth} onClick={() => props.follow(u.id)}>add</button>}
             </div>
 
             <div className={style.central}>

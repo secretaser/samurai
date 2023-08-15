@@ -93,6 +93,10 @@ a {
       &:hover {
          transition: all 0.1s ease-in-out;
       }
+
+      &:disabled {
+         opacity: 0.7;
+      }
    }
 }
 
@@ -151,8 +155,6 @@ a {
    }
 
    .buttonSmoke {
-      // background-color: #3535350c;
-
       &:hover {
          transition: all 0.1s ease-in-out;
          background-color: #353535;
@@ -162,8 +164,6 @@ a {
    }
 
    .buttonCome {
-      // background-color: #60be5d1c;
-
       &:hover {
          background-color: #60be5d;
          border: solid 1px #60be5d;
@@ -172,8 +172,6 @@ a {
    }
 
    .buttonBother {
-      // background-color: #be5d5d18;
-
       &:hover {
          border: solid 1px #be5d5d;
          background-color: #be5d5d;

@@ -1,6 +1,7 @@
 import Dialogs from './Dialogs';
-import { sendMessageCreator, updateNewMessageTextCreator } from '../../redux/dialogs_reducer';
+import { sendMessage, changeNewMessageText } from '../../redux/dialogs_reducer';
 import { connect } from 'react-redux';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 let mapStateToProps = (state) => {
    return {
@@ -12,36 +13,16 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
    return {
       changeMessageText: (text, id) => {
-         dispatch(updateNewMessageTextCreator(text, id));
+         dispatch(changeNewMessageText(text, id));
       },
       sendMessage: (id) => {
-         dispatch(sendMessageCreator(id));
+         dispatch(sendMessage(id));
       },
    }
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 export default DialogsContainer;
-
-// const DialogsContainerOld = (props) => {
-
-//    return <StoreContext.Consumer>
-//       {
-//          (store) => {
-
-//             let sendMessage = (id) => {
-//                props.store.dispatch(sendMessageCreator(id));
-//             }
-//             let changeMessageText = (text, id) => {
-//                props.store.dispatch(updateNewMessageTextCreator(text, id));
-//             }
-//             let state = store.getState();
-//             return (<Dialogs sendMessage={sendMessage} changeMessageText={changeMessageText}
-//                dialogs={state.dialogsPage}
-//                me={state.me} />
-//             )
-//          }
-//       }
-//    </StoreContext.Consumer>
-// }

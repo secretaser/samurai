@@ -7,6 +7,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import NavBarContainer from "./components/NavBar/NavBarContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import Login from "./components/Login/Login";
 
 
 const App = (props) => {
@@ -24,6 +25,7 @@ const App = (props) => {
                   <Route path="/dialogs/*" element={<DialogsContainer />} />
                   <Route path="/feed/*" element={<Feed />} />
                   <Route path="/settings/*" element={<Settings />} />
+                  <Route path="/login/*" element={<Login />} />
                </Routes>
             </div>
 
