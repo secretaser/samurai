@@ -1,0 +1,31 @@
+.content {
+   border-radius: 20px;
+   padding: 20px;
+   background-color: rgb(237, 237, 243);
+   box-shadow: 0 0 10px #0000006b;
+   max-width: 100%;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   gap: 20px;
+   margin-bottom: 20px;
+   overflow: hidden;
+}
+
+.header {}
+
+.inputLoginContainer {}
+
+.inputLogin {}
+
+.inputPasswordContainer {}
+
+.inputPassword {}
+
+.inputRememberContainer {}
+
+.inputRemember {}
+
+.submitContainer {}
+
+.submit {}

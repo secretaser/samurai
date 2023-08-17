@@ -1,17 +1,14 @@
 import style from './css/Users.module.css';
 import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
 const Users = (props) => {
    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
    let buttons = [];
-
    const cutText = (initName) => {
       if (initName != null && initName.length > 16) {
          return (initName.slice(0, 12) + '...');
       } else return initName
-   }
-
+   };
    for (let i = 0; i < 5; i++) {
       if (props.currentPage > 2 && pagesCount - props.currentPage >= 2) {
          buttons.push(props.currentPage + i - 2);
@@ -19,7 +16,6 @@ const Users = (props) => {
          buttons.push(props.currentPage + i - 1);
       } else buttons.push(props.currentPage + i);
    };
-
    let allButtons = (buttons, currentPage, onPageChange, pagesCount) => {
       return (
          <div className={style.navButtons}>

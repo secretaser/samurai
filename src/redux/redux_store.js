@@ -6,6 +6,7 @@ import me_reducer from "./me_reducer";
 import users_reducer from "./users_reducer";
 import auth_reducer from "./auth_reducer";
 import thunkMiddleWare from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 
 let reducers = combineReducers({
@@ -15,6 +16,7 @@ let reducers = combineReducers({
    navBarData: navbar_reducer,
    usersPage: users_reducer,
    auth: auth_reducer,
+   form: formReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleWare));

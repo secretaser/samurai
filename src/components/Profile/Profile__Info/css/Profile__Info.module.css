@@ -53,3 +53,44 @@
   font-weight: 500;
   line-height: 22px;
 }
+
+.status {
+  height: 37px;
+  position: relative;
+  border-radius: 20px;
+}
+.status__text {
+  margin-bottom: 12px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  color: rgba(0, 0, 0, 0.6235294118);
+}
+.status__text:hover {
+  background-color: rgba(83, 88, 97, 0.1568627451);
+  transition: all 0.2s ease;
+}
+.status__text,
+.status input {
+  font-size: 18px;
+  padding: 5px 7px;
+  overflow: hidden;
+}
+.status__inputContainer {
+  margin-bottom: 12px;
+  position: relative;
+  bottom: 1px;
+  width: 100%;
+}
+.status input {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.6235294118);
+  background-color: rgba(83, 88, 97, 0.1568627451);
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: all 0.1s ease;
+}
+.status input:focus {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(70, 70, 70, 0.2196078431);
+}

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
    return {
       friends: state.navBarData,
+      myId: state.auth.userId
    }
 };
 const mapDispatchToProps = (dispatch) => {

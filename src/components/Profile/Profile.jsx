@@ -1,10 +1,10 @@
 import MyPostsContainer from './MyPosts/MyPostsContainer';
-import Profile_Info_Container from './Profile__Info/Profile_Info_Container';
+import Profile__Info from './Profile__Info/Profile__Info';
 
 const Profile = (props) => {
    return (
       <div>
-         <Profile_Info_Container />
+         <Profile__Info profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
          <MyPostsContainer />
       </div >
    )
