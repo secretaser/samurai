@@ -11,9 +11,7 @@ const Dialogs = (props) => {
    };
 
    let dialogs = props.dialogs.dialogsData.map(dialog => <Dialogs__item key={dialog.id} name={dialog.name} id={dialog.id} lastMes={getLastMes(dialog)} avaLink={dialog.avaLink} />)
-   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat key={chat.id} chat={chat} me={props.me} sendMessage={props.sendMessage} changeMessageText={props.changeMessageText} />} />)
-
-   if (!props.isAuth) return <Navigate to={'/login'} />
+   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat key={chat.id} chat={chat} me={props.me} sendMessage={props.sendMessage} />} />)
 
    return (
       <div className={style.content}>

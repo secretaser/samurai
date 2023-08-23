@@ -41,7 +41,28 @@
 .logged {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+}
+.logged__icon {
+  background-color: transparent;
+  translate: -4px 2px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: all 0.1s;
+}
+.logged__icon img {
+  position: relative;
+  right: 2px;
+  width: 70%;
+  height: 70%;
+}
+.logged__icon:hover {
+  background-color: rgba(79, 83, 92, 0.3764705882);
+}
+.logged__icon:hover img {
+  filter: hue-rotate(100);
 }
 .logged__pic {
   display: block;

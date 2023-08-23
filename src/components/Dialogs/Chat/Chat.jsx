@@ -1,24 +1,17 @@
 import React from 'react';
 import style from './css/Chat.module.css';
 import Message from './../Message/Message'
-import { updateNewMessageTextCreator, sendMessageCreator } from '../../../redux/dialogs_reducer';
+import AddMessage from './AddMessage';
 
 const Chat = (props) => {
    let messages = props.chat.mesData.map(message => <Message text={message.text} sender={message.authorID} me={props.me} />);
 
-   let onSendMessage = (e) => {
-      let text = props.chat.newMessageText;
+   let addNewMessage = (values) => {
+      let text = values.newMessageBody;
       if (text) {
-         // props.dispatch(sendMessageCreator(props.chat.id));
-         props.sendMessage(props.chat.id);
-         // props.dispatch(updateNewMessageTextCreator('', props.chat.id))
+         props.sendMessage(props.chat.id, text);
       }
-   };
-
-   let onChange = (e) => {
-      let text = e.target.value;
-      props.changeMessageText(text, props.chat.id);
-   };
+   }
 
    return (
       <div className={style.chat}>
@@ -31,10 +24,7 @@ const Chat = (props) => {
          <div className={style.chat_content}>
             {messages}
          </div>
-         <div className={style.input_container}>
-            <textarea onChange={onChange} placeholder='Type your message...' value={props.chat.newMessageText} />
-            <button onClick={onSendMessage}>Send</button>
-         </div>
+         <AddMessage onSubmit={addNewMessage} />
       </div>
    )
 }

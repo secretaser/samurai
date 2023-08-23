@@ -50,7 +50,36 @@
 .logged {
    display: flex;
    align-items: center;
-   gap: 20px;
+   gap: 10px;
+
+   &__icon {
+      background-color: transparent;
+      translate: -4px 2px;
+      display: block;
+      width: 30px;
+      height: 30px;
+
+      // border: 1px solid #000;
+      border-radius: 50%;
+
+      img {
+         position: relative;
+         right: 2px;
+         width: 70%;
+         height: 70%;
+         // object-fit: cover;
+      }
+
+      transition: all 0.1s;
+
+      &:hover {
+         background-color: #4f535c60;
+
+         img {
+            filter: hue-rotate(100)
+         }
+      }
+   }
 
    &__login {}
 

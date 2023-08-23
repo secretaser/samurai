@@ -7,6 +7,7 @@ const SET_PAGE = 'SET_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_FOLLOWING_IN_PROGRESS';
+const FAKE = 'FAKE';
 
 let initialState = {
    users: [
@@ -88,7 +89,7 @@ export const toggleFollowingInProgress = (followingInProgress, userId) => ({ typ
 
 
 
-export const getUsers = (pageNumber, pageSize) => {
+export const requestUsers = (pageNumber, pageSize) => {
    return (dispatch) => {
       dispatch(toggleIsFetching(true))
       usersAPI.getUsers(pageNumber, pageSize).then(data => {

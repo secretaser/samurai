@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {
@@ -19,7 +18,6 @@ let initialState = {
             { id: 2, authorID: 0, text: 'Ну пойдем...' },
             // { id: 3, authorID: 228, text: 'Пашол нахуй' },
          ],
-         newMessageText: '',
       },
       {
          name: "Данька Треугольник",
@@ -31,7 +29,6 @@ let initialState = {
             { id: 2, authorID: 1, text: 'Давай покажу коешто...' },
             { id: 3, authorID: 228, text: 'Пашол нахуй' },
          ],
-         newMessageText: '',
       },
       {
          name: "Махмуд Насвай",
@@ -43,7 +40,6 @@ let initialState = {
             { id: 2, authorID: 2, text: 'Давай покажу коешто...' },
             { id: 3, authorID: 228, text: 'Пашол нахуй' },
          ],
-         newMessageText: '',
       },
       {
          name: "Аникей Две-Жиги",
@@ -55,7 +51,6 @@ let initialState = {
             { id: 2, authorID: 2, text: 'Давай покажу коешто...' },
             { id: 3, authorID: 228, text: 'Пашол нахуй' },
          ],
-         newMessageText: '',
       },
       {
          name: "Илюха Понтерштерн",
@@ -67,7 +62,6 @@ let initialState = {
             { id: 2, authorID: 2, text: 'Давай покажу коешто...' },
             { id: 3, authorID: 228, text: 'Пашол нахуй' },
          ],
-         newMessageText: '',
       }
    ],
 }
@@ -75,24 +69,12 @@ let initialState = {
 const dialogs_reducer = (state = initialState, action) => {
    switch (action.type) {
 
-      case UPDATE_NEW_MESSAGE_TEXT: {
-         return {
-            ...state,
-            dialogsData: state.dialogsData.map(d => {
-               if (d.id === action.dialogId) {
-                  return { ...d, newMessageText: action.newMessageText }
-               }
-               return d;
-            })
-         };
-      };
-
       case SEND_MESSAGE: {
          let dialog = state.dialogsData[action.dialogId];
          let newMessage = {
             id: dialog.mesData.length,
             authorID: state.me.id,
-            text: dialog.newMessageText
+            text: action.newMessageBody
          };
          return {
             ...state,
@@ -114,16 +96,10 @@ const dialogs_reducer = (state = initialState, action) => {
    }
 };
 
-export const sendMessage = (id) => ({
+export const sendMessage = (id, newMessageBody) => ({
    type: SEND_MESSAGE,
-   dialogId: id
-});
-
-export const changeNewMessageText = (text, id) => ({
-   type: UPDATE_NEW_MESSAGE_TEXT,
    dialogId: id,
-   newMessageText: text,
+   newMessageBody: newMessageBody,
 });
-
 
 export default dialogs_reducer;
