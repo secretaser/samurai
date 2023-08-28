@@ -51,6 +51,10 @@ let initialState = {
             { id: 2, authorID: 2, text: 'Давай покажу коешто...' },
             { id: 3, authorID: 228, text: 'Пашол нахуй' },
          ],
+      },
+      {
+         name: "Илюха Понтерштерн",
+         id: 4,
          avaLink: "https://uznayvse.ru/person/kirill-bledniy/kirill_bledniy02.jpg",
          mesData: [
             { id: 0, authorID: 2, text: 'Здравствуй прелость' },
@@ -92,10 +96,8 @@ const dialogs_reducer = (state = initialState, action) => {
    }
 };
 
-export const sendMessage = (id, newMessageBody) => ({
-   type: SEND_MESSAGE,
-   dialogId: id,
-   newMessageBody: newMessageBody,
-});
+export const sendMessage = (id, newMessageBody) => {
+   return ({ type: SEND_MESSAGE, dialogId: id, newMessageBody, });
+}
 
 export default dialogs_reducer;

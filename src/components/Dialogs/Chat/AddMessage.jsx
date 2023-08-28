@@ -6,7 +6,6 @@ import { Field, reduxForm } from 'redux-form';
 const maxLength50 = maxLengthCreator(50);
 
 const AddMessageForm = (props) => {
-
    return (
       <form className={style.input_container} onSubmit={props.handleSubmit}>
          <Field placeholder='Type your message...'

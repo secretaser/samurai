@@ -1,27 +1,17 @@
 import React from 'react';
 import style from './css/Dialogs.module.css';
 import Dialogs__item from './Dialogs__item/Dialogs__item';
-<<<<<<< HEAD
-import Chat from './Chat/Chat';
-import { Navigate, Route, Routes } from 'react-router-dom';
-=======
 import { Route, Routes } from 'react-router-dom';
 import Chat_container from './Chat/Chat_container';
->>>>>>> 5c0e6869ff15682da91c38fa3111f9977f394917
 
 const Dialogs = (props) => {
-
+   // debugger;
    let getLastMes = (dialog) => {
       return dialog.mesData[dialog.mesData.length - 1].text;
    };
 
-<<<<<<< HEAD
-   let dialogs = props.dialogs.dialogsData.map(dialog => <Dialogs__item key={dialog.id} name={dialog.name} id={dialog.id} lastMes={getLastMes(dialog)} avaLink={dialog.avaLink} />)
-   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat key={chat.id} chat={chat} me={props.me} sendMessage={props.sendMessage} />} />)
-=======
    let dialogs = props.dialogs.dialogsData.map(dialog => <Dialogs__item name={dialog.name} id={dialog.id} lastMes={getLastMes(dialog)} avaLink={dialog.avaLink} />)
-   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat_container store={props.store} chatID={chat.id} />} />)
->>>>>>> 5c0e6869ff15682da91c38fa3111f9977f394917
+   let chats = props.dialogs.dialogsData.map(chat => <Route path={`/${chat.id}`} element={<Chat_container chatID={chat.id} dialog={props.dialogs.dialogsData[chat.id]} me={props.me} />} />)
 
    return (
       <div className={style.content}>
