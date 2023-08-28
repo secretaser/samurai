@@ -10,23 +10,11 @@ import { getTotalUsersCount, getPageSize, getCurrentPage, getIsFetching, getFoll
 class UsersContainer extends React.Component {
 
    componentDidMount() {
-      this.props.requestUsers(this.props.pageNumber, this.props.pageSize);
-   };
-
-   onPageChange = (pageNumber) => {
-      this.props.onPageChange(pageNumber)
-   }
-
-   onFollow = (id) => {
-      this.props.follow(id);
-   };
-
-   onUnfollow = (id) => {
-      this.props.unfollow(id);
+      let { pageNumber, pageSize } = this.props;
+      this.props.requestUsers(pageNumber, pageSize);
    };
 
    render() {
-      console.log('render');
       return <>
          {this.props.isFetching ? <Preloader /> : null}
          <Users
@@ -36,16 +24,15 @@ class UsersContainer extends React.Component {
             users={this.props.users}
             isFetching={this.props.isFetching}
             followingInProgress={this.props.followingInProgress}
-            onPageChange={this.onPageChange}
-            follow={this.onFollow}
-            unfollow={this.onUnfollow}
+            onPageChange={this.props.onPageChange}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
             isAuth={this.props.isAuth} />
       </>
    }
 };
 
 let mapStateToProps = (state) => {
-   console.log('mstp');
    return {
       users: getUsers(state),
       pageSize: getPageSize(state),

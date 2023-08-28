@@ -5,10 +5,6 @@ import NewPost from './NewPost';
 
 const MyPosts = (props) => {
 
-   // shouldComponentUpdate(nextProps, nextState) {
-   //    return nextProps != this.props || nextState != this.state;
-   // }
-
    console.log('render my posts');
    let posts = [...props.postData].reverse().map(p => <Post key={p.id} likes={p.likes} text={p.text} />);
 

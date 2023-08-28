@@ -3,8 +3,7 @@ import style from './css/Profile__Info.module.css'
 import ProfileDefPicSmall from './../../../assets/images/ProfileDefPicSmall.jfif'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const Profile__Info = (props) => {
-   // console.log('render info');
+const Profile__Info = ({ profile, status, updateStatus }) => {
    let photo = (photos) => {
       if (photos.large || photos.small) {
          if (photos.large) {
@@ -13,7 +12,7 @@ const Profile__Info = (props) => {
       } else return ProfileDefPicSmall;
 
    }
-   if (!props.profile) {
+   if (!profile) {
       return <Preloader />
    } else return (
       <div>
@@ -24,19 +23,15 @@ const Profile__Info = (props) => {
             <div className={style.info}>
                <div className={style.info__item}>
                   <div className={style.info__photo}>
-                     <img src={photo(props.profile.photos)} alt="" />
+                     <img src={photo(profile.photos)} alt="" />
                   </div>
                </div>
                <div className={style.info__item}>
-                  <div className={style.info__name}>{props.profile.fullName}</div>
+                  <div className={style.info__name}>{profile.fullName}</div>
 
-                  <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+                  <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 
                   <div className={style.info__additional}>
-                     {/* <p>Born: {props.info.birthDate}</p>
-                     <p>City: {props.info.city}</p>
-                     <p>Education: {props.info.education}</p>
-                     <p>Employment: {props.info.employment}</p> */}
                      <p>Born: 10.11.2022</p>
                      <p>City: сикрет)))</p>
                      <p>Education: ПТУ</p>

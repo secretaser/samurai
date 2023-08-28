@@ -1,0 +1,110 @@
+.navButtons {
+  display: flex;
+  align-self: center;
+  gap: 10px;
+}
+
+.navButton {
+  display: block;
+  overflow: hidden;
+  height: 35px;
+  width: 35px;
+  font-size: 16px;
+  align-self: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #dadada;
+  background-color: #ffffff;
+  color: #000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1921568627);
+}
+.navButton:hover {
+  border: solid 1px #454d5e;
+  background-color: #454d5e;
+  color: #fff;
+  transition: all 0.1s ease-in-out;
+  box-shadow: none;
+}
+
+.navButton_active {
+  display: block;
+  overflow: hidden;
+  height: 35px;
+  width: 35px;
+  font-size: 16px;
+  align-self: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 50%;
+  position: relative;
+  border: solid 1px #454d5e;
+  background-color: #454d5e;
+  color: #fff;
+  transition: all 0.1s ease-in-out;
+}
+
+.arrowForward,
+.arrowBack,
+.arrowBackInactive,
+.arrowForwardInactive {
+  overflow: hidden;
+  background-color: transparent;
+  width: 35px;
+  height: 35px;
+  display: block;
+  position: relative;
+  border-radius: 50%;
+}
+.arrowForward:before,
+.arrowBack:before,
+.arrowBackInactive:before,
+.arrowForwardInactive:before {
+  z-index: 1;
+  content: "";
+  border-right: 5px solid #454d5e;
+  border-bottom: 5px solid #454d5e;
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+
+.arrowForward:after,
+.arrowBack:after {
+  content: "";
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.05s ease-out;
+  border-radius: 50%;
+  z-index: 0;
+}
+.arrowForward:active:after,
+.arrowBack:active:after {
+  transition: all 0.05s ease-out;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+.arrowForward:before,
+.arrowForwardInactive:before {
+  rotate: -45deg;
+  translate: -70% -50%;
+}
+
+.arrowBack:before,
+.arrowBackInactive:before {
+  rotate: 135deg;
+  translate: -30% -50%;
+}
+
+.arrowBackInactive:before,
+.arrowForwardInactive:before {
+  border-right-color: rgba(69, 77, 94, 0.6705882353);
+  border-bottom-color: rgba(69, 77, 94, 0.6705882353);
+}

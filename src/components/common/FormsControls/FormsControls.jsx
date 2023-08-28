@@ -25,15 +25,15 @@ export const Input = (props) => {
 };
 
 
-export const InputAuth = ({ input, meta, child, ...props }) => {
-   const hasError = meta.touched && meta.error
+export const InputAuth = ({ input, meta: { touched, error }, child, ...props }) => {
+   const hasError = touched && error
    return (
       <div className={style.formControl + ' ' + (hasError ? style.error : '')} >
 
          <input {...input} {...props} />
 
          {hasError && <div className={style.errorMessageAuth}>
-            <div>{meta.error}</div>
+            <div>{error}</div>
          </div>}
       </div >
    )

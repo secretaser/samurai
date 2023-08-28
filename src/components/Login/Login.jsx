@@ -9,31 +9,11 @@ import { Navigate } from 'react-router-dom';
 
 const LoginForm = ({ handleSubmit, error }) => {
    return (
-      <form onSubmit={handleSubmit}
-         className={style.form}>
+      <form onSubmit={handleSubmit} className={style.form}>
          {createAuthField(InputAuth, [required], 'Email...', 'email', style.inputLogin)}
-         {/* <Field
-            component={InputAuth}
-            validate={[required]}
-            className={style.inputLogin}
-            name={'email'}
-            placeholder='Email...' /> */}
-         <div className={style.inputPasswordContainer}>
-            {createAuthField(InputAuth, [required], 'Password...', 'password', style.inputPassword, { type: "password" })}
-            {/* <Field
-               component={InputAuth}
-               validate={[required]}
-               className={style.inputPassword}
-               name={'password'}
-               type={"password"}
-               placeholder='Password...' /> */}
-         </div>
+         {createAuthField(InputAuth, [required], 'Password...', 'password', style.inputPassword, { type: "password" })}
          <div className={style.inputRememberContainer}>
-            <Field
-               component={Input}
-               className={style.inputRemember}
-               name={'rememberMe'}
-               type={"checkbox"} />
+            {createAuthField(InputAuth, [], null, 'rememberMe', style.inputRemember, { type: "checkbox" })}
             <p>Remember me</p>
          </div>
          {error && <div className={style.summaryError}>{error}</div>}
