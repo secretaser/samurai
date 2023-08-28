@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import './css/AppNew.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Feed from './components/Feed/Feed';
@@ -16,6 +16,7 @@ import { initializeApp } from "./redux/app_reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 
 
+<<<<<<< HEAD
 class App extends React.Component {
 
    componentDidMount() {
@@ -41,11 +42,29 @@ class App extends React.Component {
                      <Route path="/login/*" element={<Login />} />
                   </Routes>
                </div>
+=======
+const App = (props) => {
+   return (
+      <div className='appWrapper'>
+         <div className="container">
+            <Header />
+            <NavBar friends={props.state.navBarData} />
+            <div className="appWrapper_content">
+               <Routes>
+                  <Route path="/dialogs/*" element={<Dialogs store={props.store} dialogs={props.state.dialogsPage} me={props.state.me} dispatch={props.dispatch} />} />
+                  <Route path="/profile/*" element={<Profile store={props.store} />} />
+>>>>>>> 5c0e6869ff15682da91c38fa3111f9977f394917
 
             </div>
          </div>
+<<<<<<< HEAD
       );
    }
+=======
+      </div>
+   );
+
+>>>>>>> 5c0e6869ff15682da91c38fa3111f9977f394917
 }
 
 const mapStateToProps = (state) => ({

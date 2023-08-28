@@ -1,31 +1,42 @@
 import { Field, reduxForm } from 'redux-form';
 import style from './css/Login.module.css';
-import { Input, InputAuth } from '../common/FormsControls/FormsControls';
+import { Input, InputAuth, createAuthField } from '../common/FormsControls/FormsControls';
 import { required } from '../../utils/validators/validators';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth_reducer';
 import { Navigate } from 'react-router-dom';
 
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
    return (
-      <form onSubmit={props.handleSubmit}
+      <form onSubmit={handleSubmit}
          className={style.form}>
-         <div className={style.inputLoginContainer}>
-            <Field
-               validate={[required]}
-               className={style.inputLogin} name={'email'} component={InputAuth} placeholder='Email...' />
-         </div>
+         {createAuthField(InputAuth, [required], 'Email...', 'email', style.inputLogin)}
+         {/* <Field
+            component={InputAuth}
+            validate={[required]}
+            className={style.inputLogin}
+            name={'email'}
+            placeholder='Email...' /> */}
          <div className={style.inputPasswordContainer}>
-            <Field
+            {createAuthField(InputAuth, [required], 'Password...', 'password', style.inputPassword, { type: "password" })}
+            {/* <Field
+               component={InputAuth}
                validate={[required]}
-               className={style.inputPassword} name={'password'} component={InputAuth} type={"password"} placeholder='Password...' />
+               className={style.inputPassword}
+               name={'password'}
+               type={"password"}
+               placeholder='Password...' /> */}
          </div>
          <div className={style.inputRememberContainer}>
-            <Field className={style.inputRemember} name={'rememberMe'} component={Input} type={"checkbox"} />
+            <Field
+               component={Input}
+               className={style.inputRemember}
+               name={'rememberMe'}
+               type={"checkbox"} />
             <p>Remember me</p>
          </div>
-         {props.error && <div className={style.summaryError}>{props.error}</div>}
+         {error && <div className={style.summaryError}>{error}</div>}
          <div className={style.submitContainer}>
             <button className={style.submit}>login</button>
          </div>

@@ -4,7 +4,13 @@ import style from './css/MyPosts.module.css';
 import NewPost from './NewPost';
 
 const MyPosts = (props) => {
-   let posts = props.postData.map(p => <Post key={p.id} likes={p.likes} text={p.text} />);
+
+   // shouldComponentUpdate(nextProps, nextState) {
+   //    return nextProps != this.props || nextState != this.state;
+   // }
+
+   console.log('render my posts');
+   let posts = [...props.postData].reverse().map(p => <Post key={p.id} likes={p.likes} text={p.text} />);
 
    let addPost = (values) => {
       props.addPost(values.newPostBody);
@@ -19,6 +25,6 @@ const MyPosts = (props) => {
          </div>
       </div>
    )
-}
+};
 
 export default MyPosts;

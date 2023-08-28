@@ -89,6 +89,11 @@ h6 {
 }
 
 /* ------------------------------------------------------ */
+::selection {
+  background-color: rgba(69, 77, 94, 0.768627451);
+  color: white;
+}
+
 html {
   overflow-y: scroll;
 }

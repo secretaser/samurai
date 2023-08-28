@@ -30,7 +30,7 @@ class ProfileStatus extends React.Component {
       this.setState({
          editMode: false,
       });
-      if (this.state.status != this.props.status) {
+      if (this.state.status !== this.props.status) {
          this.props.updateStatus(this.state.status);
       }
    };
@@ -41,15 +41,14 @@ class ProfileStatus extends React.Component {
       })
    };
 
-   // Всё работает норм и без этого вродеее
-   // componentDidUpdate(prevProps, prevState) {
-   //    if (prevProps.status !== this.props.status) {
-   //       this.setState({
-   //          status: this.props.status
-   //       })
-   //    }
-   //    console.log('statusDidUpdate');
-   // }
+   componentDidUpdate(prevProps, prevState) {
+      if (prevProps.status !== this.props.status) {
+         this.setState({
+            status: this.props.status
+         })
+      }
+      console.log('statusDidUpdate');
+   }
 
    render() {
       return (
@@ -72,12 +71,8 @@ let mapStateToProps = (state) => {
    }
 };
 
-let mapDispatchToProps = (dispatch) => {
-   return {}
-}
-
 compose(
-   connect(mapStateToProps, mapDispatchToProps)
+   connect(mapStateToProps, null)
 )
    (ProfileStatus)
 

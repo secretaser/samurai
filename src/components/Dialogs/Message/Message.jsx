@@ -1,6 +1,5 @@
 import style from './css/Message.module.css';
 
-
 const Message = (props) => {
    return (
       <div className={

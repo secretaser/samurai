@@ -1,3 +1,4 @@
+import { Field } from 'redux-form';
 import style from './css/FormsControls.module.css'
 
 export const FormControl = ({ input, meta, child, ...props }) => {
@@ -37,3 +38,11 @@ export const InputAuth = ({ input, meta, child, ...props }) => {
       </div >
    )
 }
+
+export const createAuthField = (component, validators, placeholder, name, className, props = {}) => (<Field
+   component={component}
+   placeholder={placeholder}
+   name={name}
+   validate={validators}
+   className={className}
+   {...props} />)

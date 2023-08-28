@@ -1,6 +1,12 @@
 @import "template.scss";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,900);
 
+
+::selection {
+   background-color: #454d5ec4;
+   color: white;
+}
+
 html {
    overflow-y: scroll;
 }

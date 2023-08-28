@@ -19,7 +19,9 @@
    padding: 2px 10px;
    font-size: 16px;
    line-height: 150%;
+   word-break: break-all;
    // max-inline-size: 400px;
-   // overflow-wrap: break-word;
+   // overflow-wrap: anywhere;
+   // hyphens: manual;
 
 }

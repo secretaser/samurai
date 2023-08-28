@@ -1,4 +1,4 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SEND_MESSAGE = 'dialogs/SEND-MESSAGE';
 
 let initialState = {
    me: {
@@ -51,10 +51,6 @@ let initialState = {
             { id: 2, authorID: 2, text: 'Давай покажу коешто...' },
             { id: 3, authorID: 228, text: 'Пашол нахуй' },
          ],
-      },
-      {
-         name: "Илюха Понтерштерн",
-         id: 4,
          avaLink: "https://uznayvse.ru/person/kirill-bledniy/kirill_bledniy02.jpg",
          mesData: [
             { id: 0, authorID: 2, text: 'Здравствуй прелость' },
