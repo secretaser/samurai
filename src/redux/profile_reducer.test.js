@@ -10,10 +10,11 @@ let initialState = {
 };
 
 test('length of postData should be incremented', () => {
-
+   // test data
    let action = addPost('New post woooow')
+   // action
    let newState = profile_reducer(initialState, action);
-
+   // expectation
    expect(newState.postData.length).toBe(5);
 });
 

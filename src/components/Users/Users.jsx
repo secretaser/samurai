@@ -9,10 +9,9 @@ const Users = (props) => {
          return (initName.slice(0, 12) + '...');
       } else return initName
    };
-   console.log(props);
    return <div className={style.content}>
 
-      <Paginator totalUsersCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />
+      <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />
 
       {props.users.map(u => (<User
          key={u.id}
@@ -23,7 +22,7 @@ const Users = (props) => {
          isAuth={props.isAuth}
       />))}
 
-      <Paginator totalUsersCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />
+      <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />
    </div>
 };
 

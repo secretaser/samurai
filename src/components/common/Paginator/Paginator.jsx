@@ -1,25 +1,51 @@
+import { useState } from 'react';
 import style from './css/Paginator.module.css';
 
 
-const Paginator = ({ currentPage, onPageChange, totalUsersCount, pageSize }) => {
-   let pagesCount = Math.ceil(totalUsersCount / pageSize);
+const Paginator = ({ currentPage, onPageChange, totalItemsCount, pageSize }) => {
+   let pagesCount = Math.ceil(totalItemsCount / pageSize);
    let buttons = [];
+   let topBorder;
+   let bottomBorder;
+   let buttonsCount = 5;
 
-   for (let i = 0; i < 5; i++) {
-      if (currentPage > 2 && pagesCount - currentPage >= 2) {
-         buttons.push(currentPage + i - 2);
-      } else if (currentPage === 2) {
-         buttons.push(currentPage + i - 1);
-      } else buttons.push(currentPage + i);
-   };
+   if (buttonsCount % 2) {
+      topBorder = currentPage + Math.floor(buttonsCount / 2);
+      bottomBorder = currentPage - Math.floor(buttonsCount / 2);
+   } else {
+      topBorder = currentPage + buttonsCount / 2;
+      bottomBorder = currentPage - buttonsCount / 2 + 1;
+   }
+
+   for (let i = bottomBorder; i <= topBorder; i++) {
+      if (bottomBorder < 1) {
+         topBorder = topBorder - bottomBorder + 1;
+         bottomBorder = 1;
+         i = 1;
+         buttons[i] = i;
+         continue;
+      }
+      if (topBorder > pagesCount) {
+         bottomBorder = bottomBorder - topBorder - 1;
+         topBorder = pagesCount;
+         i = bottomBorder;
+         buttons[i] = i;
+         continue;
+      }
+      buttons[i] = i
+   }
 
    return (
       <div className={style.navButtons}>
-         <button onClick={() => { if (currentPage > 1) onPageChange(currentPage - 1) }} className={currentPage > 1 ? style.arrowBack : style.arrowBackInactive}></button>
-         {buttons.map(b => <button disabled={currentPage == b} onClick={() => { onPageChange(b) }}
+         <button disabled={currentPage == 1} onClick={() => { currentPage > buttonsCount ? onPageChange(currentPage - buttonsCount) : onPageChange(1) }} className={currentPage > 1 ? style.arrowBack : style.arrowBackInactive}></button>
+
+         {buttons.map(b => <button
+            disabled={currentPage == b}
+            onClick={() => { onPageChange(b) }}
             className={currentPage === b ? style.navButton_active : style.navButton}>{b}</button>
          )}
-         <button onClick={() => { if (currentPage < pagesCount) onPageChange(currentPage + 1) }} className={currentPage < pagesCount ? style.arrowForward : style.arrowForwardInactive}></button>
+
+         <button disabled={currentPage == pagesCount} onClick={() => { currentPage < pagesCount - buttonsCount ? onPageChange(currentPage + buttonsCount) : onPageChange(pagesCount) }} className={currentPage < pagesCount ? style.arrowForward : style.arrowForwardInactive}></button>
       </div>
    )
 }

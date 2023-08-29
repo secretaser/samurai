@@ -10,16 +10,6 @@ class ProfileStatus extends React.Component {
       status: this.props.status,
    }
 
-   // toggleEditMode = () => {
-   //    this.setState({
-   //       editMode: !this.state.editMode,
-   //    });
-   //    if (this.state.editMode) {
-   //       debugger;
-   //       this.props.updateStatus(this.state.status)
-   //    }
-   // };
-
    activateEditMode = () => {
       this.setState({
          editMode: true,
@@ -57,7 +47,7 @@ class ProfileStatus extends React.Component {
                <div className={style.status__inputContainer}>
                   <input placeholder='How are you today?' autoFocus onChange={this.onStatusChange} onBlur={this.deactivateEditMode} value={this.state.status} />
                </div> :
-               <div onClick={this.activateEditMode} className={style.status__text}>{this.props.status || 'How are you today?'}</div>
+               <span onClick={this.activateEditMode} className={style.status__text}>{this.props.status || 'How are you today?'}</span>
             }
          </div>
       )
