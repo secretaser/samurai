@@ -4,7 +4,6 @@ import reportWebVitals from './reportWebVitals';
 import SamuraiApp from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
    <SamuraiApp />);
 

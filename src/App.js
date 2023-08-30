@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import './css/AppNew.css';
 // import Settings from './components/Settings/Settings';
 // import Feed from './components/Feed/Feed';
@@ -72,11 +72,11 @@ let AppContainer = compose(
 
 const SamuraiApp = (props) => {
    return (
-      <BrowserRouter>
+      <HashRouter basename={process.env.PUBLIC_URL}>
          <Provider store={store}>
             <AppContainer />
          </Provider>
-      </BrowserRouter>)
+      </HashRouter>)
 }
 
 export default SamuraiApp;
