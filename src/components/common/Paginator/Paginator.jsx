@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import style from './css/Paginator.module.css';
 
 
@@ -9,12 +8,18 @@ const Paginator = ({ currentPage, onPageChange, totalItemsCount, pageSize }) => 
    let bottomBorder;
    let buttonsCount = 5;
 
-   if (buttonsCount % 2) {
-      topBorder = currentPage + Math.floor(buttonsCount / 2);
-      bottomBorder = currentPage - Math.floor(buttonsCount / 2);
+   if (buttonsCount >= pagesCount) {
+      bottomBorder = 1;
+      topBorder = pagesCount;
+      buttonsCount = pagesCount
    } else {
-      topBorder = currentPage + buttonsCount / 2;
-      bottomBorder = currentPage - buttonsCount / 2 + 1;
+      if (buttonsCount % 2) {
+         topBorder = currentPage + Math.floor(buttonsCount / 2);
+         bottomBorder = currentPage - Math.floor(buttonsCount / 2);
+      } else {
+         topBorder = currentPage + buttonsCount / 2;
+         bottomBorder = currentPage - buttonsCount / 2 + 1;
+      }
    }
 
    for (let i = bottomBorder; i <= topBorder; i++) {

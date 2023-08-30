@@ -1,9 +1,11 @@
 .picture img {
   display: block;
-  margin: 100px auto;
 }
 
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   user-select: none;
   position: absolute;
   z-index: 999;

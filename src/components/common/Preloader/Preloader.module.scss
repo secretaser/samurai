@@ -1,11 +1,13 @@
 .picture {
    img {
       display: block;
-      margin: 100px auto;
    }
 }
 
 .container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
    // border: 1px solid #000;
    user-select: none;
    position: absolute;

@@ -9,6 +9,7 @@ const Users = (props) => {
          return (initName.slice(0, 12) + '...');
       } else return initName
    };
+   // debugger;
    return <div className={style.content}>
 
       <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />

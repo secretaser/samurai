@@ -64,6 +64,9 @@
 .logged__icon:hover img {
   filter: hue-rotate(100);
 }
+.logged__login {
+  color: #000;
+}
 .logged__pic {
   display: block;
   width: 50px;
