@@ -4,6 +4,7 @@ const ADD_POST = 'profile/ADD-POST';
 const SET_PROFILE = 'profile/SET_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
+const SET_PHOTO_SUCCESS = 'profile/SET_PHOTO_SUCCESS';
 
 let initialState = {
    postData: [
@@ -44,6 +45,11 @@ const profile_reducer = (state = initialState, action) => {
          return { ...state, status: action.status }
       };
 
+      case SET_PHOTO_SUCCESS: {
+         // debugger
+         return { ...state, profile: { ...state.profile, photos: action.photos } }
+      };
+
       default:
          return state;
    }
@@ -57,6 +63,8 @@ export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
 
 export const setStatus = (status) => ({ type: SET_STATUS, status });
+
+export const setPhotoSuccess = (photos) => ({ type: SET_PHOTO_SUCCESS, photos });
 
 // THUNKS
 export const getProfile = (id) => async (dispatch) => {
@@ -72,6 +80,11 @@ export const getStatus = (id) => async (dispatch) => {
 export const updateStatus = (status) => async (dispatch) => {
    let data = await profileAPI.updateStatus(status);
    if (data.resultCode === 0) dispatch(setStatus(status));
+};
+
+export const savePhoto = (photo) => async (dispatch) => {
+   let data = await profileAPI.savePhoto(photo);
+   if (data.resultCode === 0) dispatch(setPhotoSuccess(data.data.photos));
 };
 
 export default profile_reducer;
