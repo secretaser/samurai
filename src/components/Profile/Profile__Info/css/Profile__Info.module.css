@@ -94,12 +94,21 @@
 .info__contactName {
   font-weight: 700;
 }
+.info__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 8px;
+}
 .info__contact {
   font-weight: 500;
+  color: black;
 }
 .info__contactNull {
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.6235294118);
+  color: rgba(0, 0, 0, 0.4509803922);
 }
 
 .status {

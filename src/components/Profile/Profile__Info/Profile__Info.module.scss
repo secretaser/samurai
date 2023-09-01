@@ -124,13 +124,24 @@
       font-weight: 700;
    }
 
+   &__contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 16px;
+      font-weight: 500;
+      // line-height: 22px;
+      margin-left: 8px;
+   }
+
    &__contact {
       font-weight: 500;
+      color: black;
    }
 
    &__contactNull {
       font-weight: 500;
-      color: #0000009f;
+      color: #00000073;
    }
 }
 
