@@ -2,15 +2,32 @@ import Preloader from '../../common/Preloader/Preloader';
 import style from './css/Profile__Info.module.css'
 import ProfileDefPicSmall from './../../../assets/images/ProfileDefPicSmall.jfif'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ProfileDataForm from './ProfileDataForm';
 
-const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
+const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setProfileInfoSuccess, saveInfo }) => {
+
+   const onSubmit = (formData) => {
+      console.log(formData)
+      let newProfile = {
+         ...profile,
+         // aboutMe: '',
+         // lookingForAJobDescription: '',
+         // fullName: 'secretaser',
+         // lookingForAJob: false,
+         contacts: { ...profile.contacts, ...formData }
+      }
+      delete newProfile.photos;
+      saveInfo(newProfile);
+      console.log(newProfile);
+      setEditMode(false)
+   }
 
    let [editMode, setEditMode] = useState(false);
 
    const onMainPhotoSelected = (e) => {
       if (e.target.files.length) {
-         savePhoto(e.target.files[0])
+         savePhoto(e.target.files[0]);
       }
    }
 
@@ -33,7 +50,7 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto }) =>
                         {isOwner && <input type='file' className={style.info__updatePhoto} onChange={onMainPhotoSelected} />}
                      </div>
                   </div>
-                  {editMode ? <ProfileDataForm profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} goFromEditmode={() => { setEditMode(false) }} /> :
+                  {editMode ? <ProfileDataForm initialValues={profile.contacts} profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} onSubmit={onSubmit} leaveEditMode={() => { setEditMode(false) }} /> :
                      <ProfileData profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} goToEditmode={() => { setEditMode(true) }} />}
                </div>
             </div>
@@ -47,7 +64,7 @@ const ProfileData = ({ profile, status, updateStatus, isOwner, goToEditmode }) =
    const contactsNames = Object.keys(profile.contacts);
 
    const contacts = contactsNames.map(c => <div className={style.info__contactName}>
-      {c}: {profile.contacts[c] ? <a href={profile.contacts[c]} target="_blank" className={style.info__contact}>{profile.contacts[c]}</a> :
+      {c}: {profile.contacts[c] ? <span href={profile.contacts[c]} target="_blank" className={style.info__contact}>{profile.contacts[c]}</span> :
          <span className={style.info__contactNull}>unknown</span>}</div>)
 
    return (<div className={style.info__item}>
@@ -67,34 +84,6 @@ const ProfileData = ({ profile, status, updateStatus, isOwner, goToEditmode }) =
       </div>
 
    </div>)
-
-}
-
-const ProfileDataForm = ({ profile, status, updateStatus, isOwner, goFromEditmode }) => {
-
-   const contactsNames = Object.keys(profile.contacts);
-
-   const contacts = contactsNames.map(c => <div className={style.info__contactName}>
-      {c}: {profile.contacts[c] ? <a href={profile.contacts[c]} target="_blank" className={style.info__contact}>{profile.contacts[c]}</a> :
-         <span className={style.info__contactNull}>Fill me!</span>}</div>)
-
-   return (<form className={style.info__item}>
-
-      <div className={style.info__name}>{profile.fullName}</div>
-
-      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
-
-      <div className={style.info__additional}>
-         <div className={style.info__contactName}>
-            {profile.lookingForAJob ? 'Looking for a job' : `Isn't looking for a job`}
-         </div>
-         <div className={style.info__contactName}>Contacts:</div>
-         <div onDoubleClick={goFromEditmode} className={style.info__contacts}>
-            {contacts}
-         </div>
-      </div>
-
-   </form>)
 
 }
 

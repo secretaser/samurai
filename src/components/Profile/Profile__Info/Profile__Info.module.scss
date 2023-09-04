@@ -42,12 +42,18 @@
       color: #0000009f;
    }
 
-   &__item {}
+   &__item {
+      flex: 0 1 200px;
+   }
+
+   &__info {
+      flex: 1 1 auto;
+   }
 
    &__photo {
       position: relative;
-      width: 150px;
-      height: 150px;
+      // width: 200px;
+      // height: 200px;
       overflow: hidden;
       border-radius: 50%;
 
@@ -122,7 +128,12 @@
 
    &__contactName {
       font-weight: 700;
+      display: flex;
+      gap: 5px;
+      justify-content: space-between;
    }
+
+   &__input {}
 
    &__contacts {
       display: flex;

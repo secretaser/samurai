@@ -5,6 +5,7 @@ const SET_PROFILE = 'profile/SET_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
 const SET_PHOTO_SUCCESS = 'profile/SET_PHOTO_SUCCESS';
+const SET_PROFILE_INFO_SUCCESS = 'profile/SET_PROFILE_INFO_SUCCESS'
 
 let initialState = {
    postData: [
@@ -49,6 +50,15 @@ const profile_reducer = (state = initialState, action) => {
          // debugger
          return { ...state, profile: { ...state.profile, photos: action.photos } }
       };
+      case SET_PROFILE_INFO_SUCCESS: {
+         return {
+            ...state,
+            profile: {
+               ...state.profile,
+               ...action.info
+            }
+         }
+      }
 
       default:
          return state;
@@ -65,6 +75,8 @@ export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 
 export const setPhotoSuccess = (photos) => ({ type: SET_PHOTO_SUCCESS, photos });
+
+export const setProfileInfoSuccess = (info) => ({ type: SET_PROFILE_INFO_SUCCESS, info });
 
 // THUNKS
 export const getProfile = (id) => async (dispatch) => {
@@ -85,6 +97,13 @@ export const updateStatus = (status) => async (dispatch) => {
 export const savePhoto = (photo) => async (dispatch) => {
    let data = await profileAPI.savePhoto(photo);
    if (data.resultCode === 0) dispatch(setPhotoSuccess(data.data.photos));
+};
+
+export const saveInfo = (info) => async (dispatch) => {
+   let data = await profileAPI.saveInfo(info);
+   if (data.resultCode === 0) {
+      dispatch(setProfileInfoSuccess(info));
+   }
 };
 
 export default profile_reducer;

@@ -46,3 +46,11 @@ export const createAuthField = (component, validators, placeholder, name, classN
    validate={validators}
    className={className}
    {...props} />)
+
+export const createInfoField = (component, placeholder, name, className, value, props = {}) => (<Field
+   component={component}
+   placeholder={placeholder}
+   name={name}
+   className={className}
+   value={value}
+   {...props} />)
