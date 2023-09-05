@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const ADD_POST = 'profile/ADD-POST';
@@ -103,6 +104,16 @@ export const saveInfo = (info) => async (dispatch) => {
    let data = await profileAPI.saveInfo(info);
    if (data.resultCode === 0) {
       dispatch(setProfileInfoSuccess(info));
+   } else {
+      let message = data.messages.length > 0 ? data.messages[0] : '';
+      dispatch(stopSubmit('profileInfo', { _error: message }));
+      return Promise.reject(data.messages[0]);
+
+
+      // РАСПАРСИТЬ СТРОКУ С ОШИБКОЙ ДЛЯ КАЖДОГО ПОЛЯЯЯЯЯ
+
+      // dispatch(stopSubmit('profileInfo', { 'facebook': data.messages[0] }));
+
    }
 };
 

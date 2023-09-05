@@ -4,13 +4,13 @@ import style from './css/Profile__Info.module.css'
 import { Input, createInfoField } from "../../common/FormsControls/FormsControls";
 
 
-const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit, initialValues }) => {
+const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit, initialValues, error }) => {
 
    const contactsNames = Object.keys(profile.contacts);
 
    const contactsInputs = contactsNames.map(c => {
       return (
-         <div className={style.info__contactName}>
+         <div key={c} className={style.info__contactName}>
             {c}: {createInfoField(Input, `Your ${c}`, c, style.contact__input, profile.contacts[c], { value: '' })}
          </div>
       )
@@ -18,7 +18,6 @@ const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit,
 
    return (
       <form className={style.info__info} onSubmit={handleSubmit}>
-
          <div className={style.info__name}>{profile.fullName}</div>
 
          <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
@@ -32,6 +31,7 @@ const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit,
                {contactsInputs}
             </div>
          </div>
+         {error && <div className={style.info__error}>{error}</div>}
          <button>Save</button>
       </form>
    )

@@ -8,19 +8,23 @@ import ProfileDataForm from './ProfileDataForm';
 const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setProfileInfoSuccess, saveInfo }) => {
 
    const onSubmit = (formData) => {
-      console.log(formData)
       let newProfile = {
          ...profile,
-         // aboutMe: '',
-         // lookingForAJobDescription: '',
-         // fullName: 'secretaser',
-         // lookingForAJob: false,
          contacts: { ...profile.contacts, ...formData }
       }
-      delete newProfile.photos;
-      saveInfo(newProfile);
-      console.log(newProfile);
-      setEditMode(false)
+      for (let i = 0; i < Object.keys(newProfile.contacts).length; i++) {
+         if (newProfile.contacts[Object.keys(newProfile.contacts)[i]]
+            !== profile.contacts[Object.keys(newProfile.contacts)[i]]) {
+            delete newProfile.photos;
+            saveInfo(newProfile).then(
+               () => {
+                  setEditMode(false);
+               }
+            ).catch(() => { })
+            break;
+         };
+      };
+
    }
 
    let [editMode, setEditMode] = useState(false);
@@ -67,7 +71,7 @@ const ProfileData = ({ profile, status, updateStatus, isOwner, goToEditmode }) =
       {c}: {profile.contacts[c] ? <span href={profile.contacts[c]} target="_blank" className={style.info__contact}>{profile.contacts[c]}</span> :
          <span className={style.info__contactNull}>unknown</span>}</div>)
 
-   return (<div className={style.info__item}>
+   return (<div className={style.info__info}>
 
       <div className={style.info__name}>{profile.fullName}</div>
 

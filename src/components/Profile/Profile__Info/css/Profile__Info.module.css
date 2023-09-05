@@ -19,22 +19,16 @@
   display: flex;
   align-items: top;
   justify-content: left;
-  gap: 40px;
+  gap: 20px;
   padding: 20px;
   margin-bottom: 20px;
 }
-.info__status {
-  font-size: 18px;
-  margin-bottom: 12px;
-  text-indent: 5px;
-  height: 16px;
-  color: rgba(0, 0, 0, 0.6235294118);
-}
 .info__item {
-  flex: 0 1 200px;
+  flex: 0 1 auto;
 }
 .info__info {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
+  overflow: hidden;
 }
 .info__photo {
   position: relative;
@@ -78,6 +72,7 @@
   position: absolute;
   cursor: pointer;
   opacity: 0;
+  z-index: 1488;
 }
 .info__updatePhoto::-webkit-file-upload-button {
   cursor: pointer;
@@ -99,7 +94,8 @@
   font-weight: 700;
   display: flex;
   gap: 5px;
-  justify-content: space-between;
+  justify-content: left;
+  flex-wrap: wrap;
 }
 .info__contacts {
   display: flex;
@@ -117,33 +113,39 @@
   font-weight: 500;
   color: rgba(0, 0, 0, 0.4509803922);
 }
+.info__error {
+  color: red;
+}
 
 .status {
-  height: 37px;
   position: relative;
   border-radius: 20px;
+  white-space: nowrap;
+  margin-bottom: 5px;
+  max-height: 30px;
 }
 .status__text {
-  margin-bottom: 12px;
   border: 1px solid transparent;
   border-radius: 20px;
   color: rgba(0, 0, 0, 0.6235294118);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 18px;
+  padding: 5px 7px;
 }
 .status__text:hover {
   background-color: rgba(83, 88, 97, 0.1568627451);
   transition: all 0.2s ease;
 }
-.status__text,
 .status input {
   font-size: 18px;
-  padding: 5px 7px;
+  padding: 5px 7px 3px 7px;
   overflow: hidden;
+  text-wrap: nowrap;
 }
 .status__inputContainer {
-  margin-bottom: 12px;
   position: relative;
   bottom: 1px;
-  width: 100%;
 }
 .status input {
   width: 100%;

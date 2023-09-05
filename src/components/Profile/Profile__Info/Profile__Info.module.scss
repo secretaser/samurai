@@ -30,30 +30,21 @@
    display: flex;
    align-items: top;
    justify-content: left;
-   gap: 40px;
+   gap: 20px;
    padding: 20px;
    margin-bottom: 20px;
 
-   &__status {
-      font-size: 18px;
-      margin-bottom: 12px;
-      text-indent: 5px;
-      height: 16px;
-      color: #0000009f;
-   }
-
    &__item {
-      flex: 0 1 200px;
+      flex: 0 1 auto;
    }
 
    &__info {
-      flex: 1 1 auto;
+      flex: 0 1 auto;
+      overflow: hidden;
    }
 
    &__photo {
       position: relative;
-      // width: 200px;
-      // height: 200px;
       overflow: hidden;
       border-radius: 50%;
 
@@ -94,7 +85,6 @@
       }
    }
 
-
    &__updatePhoto {
       border-radius: 50%;
       top: 0;
@@ -104,6 +94,7 @@
       position: absolute;
       cursor: pointer;
       opacity: 0;
+      z-index: 1488;
 
       &::-webkit-file-upload-button {
          cursor: pointer;
@@ -123,14 +114,14 @@
       gap: 8px;
       font-size: 16px;
       font-weight: 500;
-      // line-height: 22px;
    }
 
    &__contactName {
       font-weight: 700;
       display: flex;
       gap: 5px;
-      justify-content: space-between;
+      justify-content: left;
+      flex-wrap: wrap;
    }
 
    &__input {}
@@ -154,19 +145,27 @@
       font-weight: 500;
       color: #00000073;
    }
+
+   &__error {
+      color: red;
+   }
 }
 
 .status {
-   height: 37px;
    position: relative;
    border-radius: 20px;
-   // width: 200px;
+   white-space: nowrap;
+   margin-bottom: 5px;
+   max-height: 30px;
 
    &__text {
-      margin-bottom: 12px;
       border: 1px solid transparent;
       border-radius: 20px;
       color: #0000009f;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 18px;
+      padding: 5px 7px;
 
       &:hover {
          background-color: #53586128;
@@ -174,19 +173,20 @@
       }
    }
 
-   &__text,
    input {
       font-size: 18px;
-      padding: 5px 7px;
+      padding: 5px 7px 3px 7px;
       overflow: hidden;
+      text-wrap: nowrap;
+      // border: none;
 
    }
 
    &__inputContainer {
-      margin-bottom: 12px;
+      // margin-bottom: 12px;
       position: relative;
       bottom: 1px;
-      width: 100%;
+      // width: 100%;
    }
 
    input {

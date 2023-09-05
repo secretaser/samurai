@@ -8,9 +8,9 @@ export const FormControl = ({ input, meta, child, ...props }) => {
 
          {props.children}
 
-         {/* {hasError && <div className={style.errorMessage}>
+         {hasError && <div className={style.errorMessage}>
             <span>{meta.error}</span>
-         </div>} */}
+         </div>}
       </div >
    )
 };
