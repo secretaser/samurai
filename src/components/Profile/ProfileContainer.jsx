@@ -34,6 +34,7 @@ class ProfileContainer extends React.Component {
             savePhoto={this.props.savePhoto}
             setProfileInfoSuccess={this.props.setProfileInfoSuccess}
             saveInfo={this.props.saveInfo}
+            isFetching={this.props.isFetching}
          />
       )
    }
@@ -45,6 +46,7 @@ let mapStateToProps = (state) => {
       status: state.profilePage.status,
       authorizedUserId: state.auth.userId,
       isAuth: state.auth.isAuth,
+      isFetching: state.profilePage.isFetching,
    }
 }
 

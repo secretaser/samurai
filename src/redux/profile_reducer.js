@@ -7,6 +7,7 @@ const SET_STATUS = 'profile/SET_STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
 const SET_PHOTO_SUCCESS = 'profile/SET_PHOTO_SUCCESS';
 const SET_PROFILE_INFO_SUCCESS = 'profile/SET_PROFILE_INFO_SUCCESS'
+const TOGGLE_INFO_IS_FETCHING = 'profile/TOGGLE_INFO_IS_FETCHING';
 
 let initialState = {
    postData: [
@@ -17,6 +18,7 @@ let initialState = {
    ],
    profile: null,
    status: '',
+   isFetching: false,
 }
 
 const profile_reducer = (state = initialState, action) => {
@@ -59,6 +61,9 @@ const profile_reducer = (state = initialState, action) => {
                ...action.info
             }
          }
+      };
+      case TOGGLE_INFO_IS_FETCHING: {
+         return { ...state, isFetching: action.isFetching }
       }
 
       default:
@@ -79,10 +84,14 @@ export const setPhotoSuccess = (photos) => ({ type: SET_PHOTO_SUCCESS, photos })
 
 export const setProfileInfoSuccess = (info) => ({ type: SET_PROFILE_INFO_SUCCESS, info });
 
+export const toggleInfoIsFetching = (isFetching) => ({ type: TOGGLE_INFO_IS_FETCHING, isFetching });
+
 // THUNKS
 export const getProfile = (id) => async (dispatch) => {
+   dispatch(toggleInfoIsFetching(true))
    let data = await profileAPI.getProfile(id);
    dispatch(setProfile(data));
+   dispatch(toggleInfoIsFetching(false))
 };
 
 export const getStatus = (id) => async (dispatch) => {
@@ -101,6 +110,7 @@ export const savePhoto = (photo) => async (dispatch) => {
 };
 
 export const saveInfo = (info) => async (dispatch) => {
+   console.log(info);
    let data = await profileAPI.saveInfo(info);
    if (data.resultCode === 0) {
       dispatch(setProfileInfoSuccess(info));

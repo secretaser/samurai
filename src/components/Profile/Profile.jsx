@@ -10,7 +10,8 @@ const Profile = (props) => {
             isOwner={props.isOwner}
             savePhoto={props.savePhoto}
             setProfileInfoSuccess={props.setProfileInfoSuccess}
-            saveInfo={props.saveInfo} />
+            saveInfo={props.saveInfo}
+            isFetching={props.isFetching} />
          <MyPostsContainer />
       </div >
    )

@@ -1,11 +1,12 @@
 import Preloader from '../../common/Preloader/Preloader';
+import React, { useEffect, useState } from 'react';
 import style from './css/Profile__Info.module.css'
 import ProfileDefPicSmall from './../../../assets/images/ProfileDefPicSmall.jfif'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-import { useEffect, useState } from 'react';
 import ProfileDataForm from './ProfileDataForm';
 
-const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setProfileInfoSuccess, saveInfo }) => {
+const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setProfileInfoSuccess, saveInfo, isFetching }) => {
+
 
    const onSubmit = (formData) => {
       let newProfile = {
@@ -21,10 +22,11 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setP
                   setEditMode(false);
                }
             ).catch(() => { })
+            console.log('sent');
             break;
-         };
+         }
       };
-
+      setEditMode(false);
    }
 
    let [editMode, setEditMode] = useState(false);
@@ -44,32 +46,34 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setP
                <img src='https://midag.ru/wp-content/uploads/2022/11/religiya-%E2%84%9645_1-2.jpg' alt="" />
             </div>
             <div className={style.content__item}>
-               <div className={style.info}>
-                  <div className={style.info__item}>
-                     <div className={style.info__photo}>
-                        <img src={profile.photos.large || ProfileDefPicSmall} alt="" />
-                        {isOwner && <div className={style.info__photo__upd}>
-                           <div className={style.info__photo__upd__icon}>+</div>
-                        </div>}
-                        {isOwner && <input type='file' className={style.info__updatePhoto} onChange={onMainPhotoSelected} />}
+               {isFetching ? <Preloader /> :
+                  <div className={style.info}>
+                     <div className={style.info__item}>
+                        <div className={style.info__photo}>
+                           <img src={profile.photos.large || ProfileDefPicSmall} alt="" />
+                           {isOwner && <div className={style.info__photo__upd}>
+                              <div className={style.info__photo__upd__icon}>+</div>
+                           </div>}
+                           {isOwner && <input type='file' className={style.info__updatePhoto} onChange={onMainPhotoSelected} />}
+                        </div>
                      </div>
+                     {isOwner ? <ProfileDataForm initialValues={profile.contacts} profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} onSubmit={onSubmit} leaveEditMode={() => { setEditMode(false) }} setProfileInfoSuccess={setProfileInfoSuccess} /> :
+                        <ProfileData profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} goToEditmode={() => { setEditMode(true) }} />}
                   </div>
-                  {editMode ? <ProfileDataForm initialValues={profile.contacts} profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} onSubmit={onSubmit} leaveEditMode={() => { setEditMode(false) }} /> :
-                     <ProfileData profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} goToEditmode={() => { setEditMode(true) }} />}
-               </div>
+               }
             </div>
          </div >
       )
    }
 }
 
-const ProfileData = ({ profile, status, updateStatus, isOwner, goToEditmode }) => {
+const ProfileData = ({ profile, status, updateStatus, goToEditmode }) => {
 
    const contactsNames = Object.keys(profile.contacts);
 
    const contacts = contactsNames.map(c => <div className={style.info__contactName}>
-      {c}: {profile.contacts[c] ? <span href={profile.contacts[c]} target="_blank" className={style.info__contact}>{profile.contacts[c]}</span> :
-         <span className={style.info__contactNull}>unknown</span>}</div>)
+      {c}: {profile.contacts[c] ? <a href={profile.contacts[c]} target="_blank" className={style.info__contact}>{profile.contacts[c]}</a> :
+         <div className={style.info__contactNull}>unknown</div>}</div>)
 
    return (<div className={style.info__info}>
 
@@ -78,11 +82,11 @@ const ProfileData = ({ profile, status, updateStatus, isOwner, goToEditmode }) =
       <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 
       <div className={style.info__additional}>
-         <div className={style.info__contactName}>
+         <div className={style.info__looking}>
             {profile.lookingForAJob ? 'Looking for a job' : `Isn't looking for a job`}
          </div>
-         <div className={style.info__contactName}>Contacts:</div>
          <div onDoubleClick={goToEditmode} className={style.info__contacts}>
+            <div className={style.info__contactsHead}>Contacts:</div>
             {contacts}
          </div>
       </div>

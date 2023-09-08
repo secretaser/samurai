@@ -1,17 +1,36 @@
+import React, { useEffect, useState } from 'react';
 import { Field, reduxForm } from "redux-form";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import style from './css/Profile__Info.module.css'
-import { Input, createInfoField } from "../../common/FormsControls/FormsControls";
+import { InputInfo, createInfoField } from "../../common/FormsControls/FormsControls";
 
 
 const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit, initialValues, error }) => {
+
+   let [editMode, setEditMode] = useState(false);
+
+   const activateEditMode = () => {
+      setEditMode(true);
+   }
+   const deactivateEditMode = () => {
+      handleSubmit()
+      setEditMode(false);
+   }
+
+   const check = (e) => {
+      console.log(e.target);
+      console.log(e.relatedTarget);
+   }
+
+   // SUBMIT ПО КНОПКЕ ПРОСТО
+
 
    const contactsNames = Object.keys(profile.contacts);
 
    const contactsInputs = contactsNames.map(c => {
       return (
          <div key={c} className={style.info__contactName}>
-            {c}: {createInfoField(Input, `Your ${c}`, c, style.contact__input, profile.contacts[c], { value: '' })}
+            {c}: {createInfoField(InputInfo, `Fill me!`, c, style.info__input, { onClick: check })}
          </div>
       )
    })
@@ -23,11 +42,11 @@ const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit,
          <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 
          <div className={style.info__additional}>
-            <div className={style.info__contactName}>
+            <div className={style.info__looking}>
                {profile.lookingForAJob ? 'Looking for a job' : `Isn't looking for a job`}
             </div>
-            <div className={style.info__contactName}>Contacts:</div>
-            <div className={style.info__contacts}>
+            <div className={editMode ? style.info__contactsActive : style.info__contacts} onBlur={deactivateEditMode} onClick={activateEditMode}>
+               <div className={style.info__contactsHead}>Contacts:</div>
                {contactsInputs}
             </div>
          </div>

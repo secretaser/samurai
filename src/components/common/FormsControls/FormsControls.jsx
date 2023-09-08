@@ -47,10 +47,32 @@ export const createAuthField = (component, validators, placeholder, name, classN
    className={className}
    {...props} />)
 
-export const createInfoField = (component, placeholder, name, className, value, props = {}) => (<Field
-   component={component}
-   placeholder={placeholder}
-   name={name}
-   className={className}
-   value={value}
-   {...props} />)
+
+export const InputInfo = (props) => {
+   const { input, meta, child, ...restProps } = props;
+   return <InfoFormControl {...props}><input {...input} {...restProps} /></InfoFormControl>
+};
+
+export const InfoFormControl = ({ input, meta, child, ...props }) => {
+   const hasError = meta.touched && meta.error
+   return (
+      <div className={style.formControlInfo + ' ' + (hasError ? style.error : '')} >
+
+         {props.children}
+
+         {/* {hasError && <div className={style.errorMessage}>
+               <span>{meta.error}</span>
+            </div>} */}
+      </div >
+   )
+};
+
+export const createInfoField = (component, placeholder, name, className, props = {}) => {
+   // debugger;
+   return (<Field
+      component={component}
+      placeholder={placeholder}
+      name={name}
+      className={className}
+      {...props} />)
+}
