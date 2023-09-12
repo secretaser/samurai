@@ -5,8 +5,7 @@ import style from './css/Profile__Info.module.css'
 import { InputInfo, createInfoField } from "../../common/FormsControls/FormsControls";
 
 
-const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit, initialValues, error }) => {
-
+const ProfileDataForm = ({ profile, status, updateStatus, handleSubmit, initialValues, error }) => {
    let [editMode, setEditMode] = useState(false);
 
    const activateEditMode = () => {
@@ -17,20 +16,27 @@ const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit,
       setEditMode(false);
    }
 
-   const check = (e) => {
-      console.log(e.target);
-      console.log(e.relatedTarget);
+   const clickHandler = (e) => {
+      if (!e.target.closest('form')) {
+         deactivateEditMode();
+      }
    }
 
-   // SUBMIT ПО КНОПКЕ ПРОСТО
+   useEffect(() => {
+      console.log('mounted');
+      window.addEventListener('click', clickHandler)
+      return () => {
+         window.removeEventListener('click', clickHandler)
+      }
+   }, [])
 
+   let [check, setCheck] = useState(profile.lookingForAJob)
 
    const contactsNames = Object.keys(profile.contacts);
-
    const contactsInputs = contactsNames.map(c => {
       return (
          <div key={c} className={style.info__contactName}>
-            {c}: {createInfoField(InputInfo, `Fill me!`, c, style.info__input, { onClick: check })}
+            {c}: {createInfoField(InputInfo, `Fill me!`, 'contacts.' + c, style.info__input)}
          </div>
       )
    })
@@ -42,16 +48,18 @@ const ProfileDataForm = ({ profile, status, updateStatus, isOwner, handleSubmit,
          <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 
          <div className={style.info__additional}>
-            <div className={style.info__looking}>
-               {profile.lookingForAJob ? 'Looking for a job' : `Isn't looking for a job`}
-            </div>
-            <div className={editMode ? style.info__contactsActive : style.info__contacts} onBlur={deactivateEditMode} onClick={activateEditMode}>
+            <div className={editMode ? style.info__contactsActive : style.info__contacts} onClick={activateEditMode}>
+
+               <div onClick={() => setCheck(!check)} className={check ? style.info__lookingActive : style.info__looking}>
+                  <Field checked={check} component='input' type='checkbox' name='lookingForAJob' className={style.info__checkbox} />
+                  <label for='lookingForAJob'>{editMode ? 'Looking for a job?' : profile.lookingForAJob ? 'Looking for a job' : `Not looking for a job`}</label>
+               </div>
+
                <div className={style.info__contactsHead}>Contacts:</div>
                {contactsInputs}
             </div>
          </div>
          {error && <div className={style.info__error}>{error}</div>}
-         <button>Save</button>
       </form>
    )
 }

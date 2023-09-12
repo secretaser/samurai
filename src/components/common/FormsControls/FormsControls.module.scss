@@ -35,7 +35,6 @@
    top: 0;
    background-color: #fff;
    padding: 10px;
-   // color: red;
    border: 2px solid rgba(255, 0, 0, 0.37);
    border-radius: 20px;
 }
@@ -43,4 +42,5 @@
 .formControlInfo {
    position: relative;
    flex: 1 1 auto;
+   display: inline-block;
 }

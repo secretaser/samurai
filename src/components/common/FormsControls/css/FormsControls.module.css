@@ -126,4 +126,5 @@ h6 {
 .formControlInfo {
   position: relative;
   flex: 1 1 auto;
+  display: inline-block;
 }

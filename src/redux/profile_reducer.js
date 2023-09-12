@@ -110,7 +110,6 @@ export const savePhoto = (photo) => async (dispatch) => {
 };
 
 export const saveInfo = (info) => async (dispatch) => {
-   console.log(info);
    let data = await profileAPI.saveInfo(info);
    if (data.resultCode === 0) {
       dispatch(setProfileInfoSuccess(info));

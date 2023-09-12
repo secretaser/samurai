@@ -7,15 +7,16 @@ import ProfileDataForm from './ProfileDataForm';
 
 const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setProfileInfoSuccess, saveInfo, isFetching }) => {
 
-
    const onSubmit = (formData) => {
       let newProfile = {
          ...profile,
-         contacts: { ...profile.contacts, ...formData }
+         lookingForAJob: formData.lookingForAJob,
+         contacts: { ...profile.contacts, ...formData.contacts }
       }
       for (let i = 0; i < Object.keys(newProfile.contacts).length; i++) {
          if (newProfile.contacts[Object.keys(newProfile.contacts)[i]]
-            !== profile.contacts[Object.keys(newProfile.contacts)[i]]) {
+            !== profile.contacts[Object.keys(newProfile.contacts)[i]] ||
+            newProfile.lookingForAJob !== profile.lookingForAJob) {
             delete newProfile.photos;
             saveInfo(newProfile).then(
                () => {
@@ -57,7 +58,7 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setP
                            {isOwner && <input type='file' className={style.info__updatePhoto} onChange={onMainPhotoSelected} />}
                         </div>
                      </div>
-                     {isOwner ? <ProfileDataForm initialValues={profile.contacts} profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} onSubmit={onSubmit} leaveEditMode={() => { setEditMode(false) }} setProfileInfoSuccess={setProfileInfoSuccess} /> :
+                     {isOwner ? <ProfileDataForm initialValues={profile} profile={profile} status={status} updateStatus={updateStatus} onSubmit={onSubmit} /> :
                         <ProfileData profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} goToEditmode={() => { setEditMode(true) }} />}
                   </div>
                }
@@ -79,13 +80,16 @@ const ProfileData = ({ profile, status, updateStatus, goToEditmode }) => {
 
       <div className={style.info__name}>{profile.fullName}</div>
 
-      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+      {/* <ProfileStatusWithHooks status={status} updateStatus={updateStatus} /> */}
+      <div className={style.status}>
+         <div className={style.status__text}>{status || 'No status'}</div>
+      </div>
 
       <div className={style.info__additional}>
-         <div className={style.info__looking}>
-            {profile.lookingForAJob ? 'Looking for a job' : `Isn't looking for a job`}
-         </div>
-         <div onDoubleClick={goToEditmode} className={style.info__contacts}>
+         <div className={style.info__contacts}>
+            <div className={style.info__looking}>
+               {profile.lookingForAJob ? 'Looking for a job' : `Isn't looking for a job`}
+            </div>
             <div className={style.info__contactsHead}>Contacts:</div>
             {contacts}
          </div>
