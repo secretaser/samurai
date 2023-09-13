@@ -1,11 +1,10 @@
 import Preloader from '../../common/Preloader/Preloader';
 import React, { useEffect, useState } from 'react';
 import style from './css/Profile__Info.module.css'
-import ProfileDefPicSmall from './../../../assets/images/ProfileDefPicSmall.jfif'
-import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import ProfileDefPicSmall from './../../../assets/images/ProfileDefPicSmall.jfif';
 import ProfileDataForm from './ProfileDataForm';
 
-const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, setProfileInfoSuccess, saveInfo, isFetching }) => {
+const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, saveInfo, isFetching }) => {
 
    const onSubmit = (formData) => {
       let newProfile = {

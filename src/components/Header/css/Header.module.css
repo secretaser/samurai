@@ -37,6 +37,9 @@
 .header__loginBlock {
   font-size: 20px;
 }
+.header__loginBlock a {
+  color: #000;
+}
 
 .logged {
   display: flex;
