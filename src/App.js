@@ -1,12 +1,5 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import './css/AppNew.css';
-// import Settings from './components/Settings/Settings';
-// import Feed from './components/Feed/Feed';
-// import DialogsContainer from "./components/Dialogs/DialogsContainer";
-// import UsersContainer from "./components/Users/UsersContainer";
-// import ProfileContainer from "./components/Profile/ProfileContainer";
-// import Login from "./components/Login/Login";
-
 import HeaderContainer from './components/Header/HeaderContainer';
 import NavBarContainer from "./components/NavBar/NavBarContainer";
 import React from "react";
@@ -27,10 +20,19 @@ const Settings = lazy(() => import('./components/Settings/Settings'))
 
 class App extends React.Component {
 
+   catchAllUnhandledErrors = (reason, PromiseRejectionEvent) => {
+      // alert('some error');
+      console.log(PromiseRejectionEvent);
+   }
+
    componentDidMount() {
       this.props.initializeApp();
+      window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
    };
 
+   componentWillUnmount() {
+      window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+   }
    render() {
       if (!this.props.initialized) {
          return <Preloader />
@@ -49,6 +51,8 @@ class App extends React.Component {
                         <Route path="/feed/*" element={<Feed />} />
                         <Route path="/settings/*" element={<Settings />} />
                         <Route path="/login/*" element={<Login />} />
+                        <Route path="/" element={<Navigate to="/profile" />} />
+                        {/* <Route path="/" element={<Navigate to='/profile' />} /> */}
                      </Routes>
                   </div>
                </Suspense>

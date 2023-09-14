@@ -6,6 +6,7 @@ import Preloader from '../common/Preloader/Preloader';
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getTotalUsersCount, getPageSize, getCurrentPage, getIsFetching, getFollowingInProgress, getUsers } from "../../redux/users_selectors";
+import UsersLoading from "./UsersLoading";
 
 class UsersContainer extends React.Component {
 
@@ -16,7 +17,7 @@ class UsersContainer extends React.Component {
 
    render() {
       return <>
-         {this.props.isFetching ? <Preloader /> : null}
+         {/* {this.props.isFetching ? <Preloader /> : null}
          <Users
             currentPage={this.props.currentPage}
             totalUsersCount={this.props.totalUsersCount}
@@ -27,7 +28,26 @@ class UsersContainer extends React.Component {
             onPageChange={this.props.onPageChange}
             follow={this.props.follow}
             unfollow={this.props.unfollow}
-            isAuth={this.props.isAuth} />
+            isAuth={this.props.isAuth} /> */}
+
+         {this.props.isFetching ? <UsersLoading
+            currentPage={this.props.currentPage}
+            onPageChange={this.props.onPageChange}
+            pageSize={this.props.pageSize}
+            totalUsersCount={this.props.totalUsersCount} />
+            :
+            <Users
+               currentPage={this.props.currentPage}
+               totalUsersCount={this.props.totalUsersCount}
+               pageSize={this.props.pageSize}
+               users={this.props.users}
+               isFetching={this.props.isFetching}
+               followingInProgress={this.props.followingInProgress}
+               onPageChange={this.props.onPageChange}
+               follow={this.props.follow}
+               unfollow={this.props.unfollow}
+               isAuth={this.props.isAuth} />}
+
       </>
    }
 };

@@ -100,8 +100,12 @@ export const getStatus = (id) => async (dispatch) => {
 };
 
 export const updateStatus = (status) => async (dispatch) => {
-   let data = await profileAPI.updateStatus(status);
-   if (data.resultCode === 0) dispatch(setStatus(status));
+   try {
+      let data = await profileAPI.updateStatus(status);
+      if (data.resultCode === 0) dispatch(setStatus(status));
+   } catch (error) {
+      console.log('ты дурачок?');
+   }
 };
 
 export const savePhoto = (photo) => async (dispatch) => {

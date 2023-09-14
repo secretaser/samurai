@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 const User = ({ user, followingInProgress, unfollow, follow, isAuth }) => {
    const cutText = (initName) => {
-      if (initName != null && initName.length > 16) {
-         return (initName.slice(0, 12) + '...');
+      const maxNameLength = 16;
+      if (initName != null && initName.length > maxNameLength) {
+         return (initName.slice(0, maxNameLength) + '...');
       } else return initName
    };
 
