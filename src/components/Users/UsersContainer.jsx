@@ -7,6 +7,7 @@ import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getTotalUsersCount, getPageSize, getCurrentPage, getIsFetching, getFollowingInProgress, getUsers } from "../../redux/users_selectors";
 import UsersLoading from "./UsersLoading";
+import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
 
 class UsersContainer extends React.Component {
 
@@ -17,18 +18,11 @@ class UsersContainer extends React.Component {
 
    render() {
       return <>
-         {/* {this.props.isFetching ? <Preloader /> : null}
-         <Users
+         {/* <UsersLoading
             currentPage={this.props.currentPage}
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            users={this.props.users}
-            isFetching={this.props.isFetching}
-            followingInProgress={this.props.followingInProgress}
             onPageChange={this.props.onPageChange}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            isAuth={this.props.isAuth} /> */}
+            pageSize={this.props.pageSize}
+            totalUsersCount={this.props.totalUsersCount} /> */}
 
          {this.props.isFetching ? <UsersLoading
             currentPage={this.props.currentPage}
@@ -46,7 +40,8 @@ class UsersContainer extends React.Component {
                onPageChange={this.props.onPageChange}
                follow={this.props.follow}
                unfollow={this.props.unfollow}
-               isAuth={this.props.isAuth} />}
+               isAuth={this.props.isAuth}
+               ProfileDefPicSmall={this.props.ProfileDefPicSmall} />}
 
       </>
    }
@@ -61,6 +56,7 @@ let mapStateToProps = (state) => {
       isFetching: getIsFetching(state),
       followingInProgress: getFollowingInProgress(state),
       isAuth: state.auth.isAuth,
+      ProfileDefPicSmall: state.usersPage.defPicSmall,
    }
 };
 

@@ -1,8 +1,8 @@
 import style from './css/Users.module.css';
-import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
+// import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
 import { NavLink } from 'react-router-dom';
 
-const User = ({ user, followingInProgress, unfollow, follow, isAuth }) => {
+const User = ({ user, followingInProgress, unfollow, follow, isAuth, ProfileDefPicSmall }) => {
    const cutText = (initName) => {
       const maxNameLength = 16;
       if (initName != null && initName.length > maxNameLength) {

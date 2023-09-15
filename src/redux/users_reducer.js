@@ -1,5 +1,6 @@
 import { usersAPI } from "../api/api";
 import { updateObjectInArray } from "../utils/object-helpers";
+import defPicSmall from '../assets/images/ProfileDefPicSmall.jfif'
 
 const SET_USERS = 'users/SET_USERS';
 const FOLLOW = 'users/FOLLOW';
@@ -10,6 +11,7 @@ const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
 const TOGGLE_FOLLOWING_IN_PROGRESS = 'users/TOGGLE_FOLLOWING_IN_PROGRESS';
 
 let initialState = {
+   defPicSmall: defPicSmall,
    users: [
    ],
    pageSize: 5,

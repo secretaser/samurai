@@ -17,6 +17,7 @@ const Users = (props) => {
             unfollow={props.unfollow}
             follow={props.follow}
             isAuth={props.isAuth}
+            ProfileDefPicSmall={props.ProfileDefPicSmall}
          />))}
 
          <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />

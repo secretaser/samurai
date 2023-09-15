@@ -209,13 +209,48 @@ a {
 }
 
 @mixin loading_container {
-   border: 1px solid #c7c7c7;
-   background-color: rgb(237, 237, 243);
+   border: 1px solid transparent;
+   background-color: #fff;
+   box-shadow: 0 0 5px #0000006b;
 }
 
 @mixin loading_element {
-   background-color: rgb(210, 210, 214);
-   border: 1px solid transparent;
+   position: relative;
+   background-color: rgb(227, 227, 231);
+   // border: 1px solid transparent;
+   overflow: hidden;
+
+   &:before {
+      content: '';
+      background-color: #ffffff;
+      position: absolute;
+      bottom: -20px;
+      left: -25%;
+      height: 400%;
+      width: 20%;
+      animation: loading 1s linear 0s infinite normal forwards;
+      rotate: 20deg;
+      filter: drop-shadow(0 0 10px #ffffff);
+      box-shadow: 0 0 10px #fff,
+         0 0 3px #fff,
+         0 0 4px #fff,
+         0 0 5px #fff,
+         0 0 10px #fff;
+   }
+}
+
+@keyframes loading {
+   0% {
+      left: -25%;
+   }
+
+   50% {
+      left: 200%;
+   }
+
+   100% {
+      left: 200%;
+   }
 }
 
 .loading {
@@ -266,7 +301,7 @@ a {
    &__buttonAdd {
       @include loading_element;
       color: #000;
-      border: solid 1px #cfcfcf;
+      // border: solid 1px #cfcfcf;
       width: 100%;
       overflow: hidden;
       align-self: end;

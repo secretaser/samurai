@@ -184,6 +184,17 @@ a {
   transition: all 0.1s ease-in-out;
 }
 
+@keyframes loading {
+  0% {
+    left: -25%;
+  }
+  50% {
+    left: 200%;
+  }
+  100% {
+    left: 200%;
+  }
+}
 .loading__content {
   border-radius: 20px;
   padding: 20px;
@@ -198,8 +209,9 @@ a {
   overflow: hidden;
 }
 .loading__container {
-  border: 1px solid #c7c7c7;
-  background-color: rgb(237, 237, 243);
+  border: 1px solid transparent;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4196078431);
   gap: 20px;
   display: flex;
   flex-wrap: nowrap;
@@ -216,19 +228,33 @@ a {
   gap: 10px;
 }
 .loading__image {
-  background-color: rgb(210, 210, 214);
-  border: 1px solid transparent;
+  position: relative;
+  background-color: rgb(227, 227, 231);
+  overflow: hidden;
   position: relative;
   width: 100px;
   height: 100px;
   overflow: hidden;
   border-radius: 50%;
 }
+.loading__image:before {
+  content: "";
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -20px;
+  left: -25%;
+  height: 400%;
+  width: 20%;
+  animation: loading 1s linear 0s infinite normal forwards;
+  rotate: 20deg;
+  filter: drop-shadow(0 0 10px #ffffff);
+  box-shadow: 0 0 10px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff;
+}
 .loading__buttonAdd {
-  background-color: rgb(210, 210, 214);
-  border: 1px solid transparent;
+  position: relative;
+  background-color: rgb(227, 227, 231);
+  overflow: hidden;
   color: #000;
-  border: solid 1px #cfcfcf;
   width: 100%;
   overflow: hidden;
   align-self: end;
@@ -239,12 +265,26 @@ a {
   position: relative;
   transition: all 0.2s ease-in-out;
 }
+.loading__buttonAdd:before {
+  content: "";
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -20px;
+  left: -25%;
+  height: 400%;
+  width: 20%;
+  animation: loading 1s linear 0s infinite normal forwards;
+  rotate: 20deg;
+  filter: drop-shadow(0 0 10px #ffffff);
+  box-shadow: 0 0 10px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff;
+}
 .loading__central {
   flex: 1 1 auto;
 }
 .loading__name {
-  background-color: rgb(210, 210, 214);
-  border: 1px solid transparent;
+  position: relative;
+  background-color: rgb(227, 227, 231);
+  overflow: hidden;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -255,21 +295,62 @@ a {
   border-radius: 10px;
   width: 200px;
 }
+.loading__name:before {
+  content: "";
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -20px;
+  left: -25%;
+  height: 400%;
+  width: 20%;
+  animation: loading 1s linear 0s infinite normal forwards;
+  rotate: 20deg;
+  filter: drop-shadow(0 0 10px #ffffff);
+  box-shadow: 0 0 10px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff;
+}
 .loading__location {
-  background-color: rgb(210, 210, 214);
-  border: 1px solid transparent;
+  position: relative;
+  background-color: rgb(227, 227, 231);
+  overflow: hidden;
   margin-bottom: 10px;
   height: 14px;
   width: 100px;
   border-radius: 7px;
 }
+.loading__location:before {
+  content: "";
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -20px;
+  left: -25%;
+  height: 400%;
+  width: 20%;
+  animation: loading 1s linear 0s infinite normal forwards;
+  rotate: 20deg;
+  filter: drop-shadow(0 0 10px #ffffff);
+  box-shadow: 0 0 10px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff;
+}
 .loading__status {
-  background-color: rgb(210, 210, 214);
-  border: 1px solid transparent;
+  position: relative;
+  background-color: rgb(227, 227, 231);
+  overflow: hidden;
   margin-bottom: 10px;
   height: 18px;
   width: 250px;
   border-radius: 9px;
+}
+.loading__status:before {
+  content: "";
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -20px;
+  left: -25%;
+  height: 400%;
+  width: 20%;
+  animation: loading 1s linear 0s infinite normal forwards;
+  rotate: 20deg;
+  filter: drop-shadow(0 0 10px #ffffff);
+  box-shadow: 0 0 10px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff;
 }
 .loading__actions {
   display: flex;
@@ -279,8 +360,9 @@ a {
   position: relative;
 }
 .loading__buttonRight {
-  background-color: rgb(210, 210, 214);
-  border: 1px solid transparent;
+  position: relative;
+  background-color: rgb(227, 227, 231);
+  overflow: hidden;
   width: 150px;
   display: block;
   overflow: hidden;
@@ -292,4 +374,17 @@ a {
   color: #000;
   position: relative;
   transition: all 0.2s ease-in-out;
+}
+.loading__buttonRight:before {
+  content: "";
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -20px;
+  left: -25%;
+  height: 400%;
+  width: 20%;
+  animation: loading 1s linear 0s infinite normal forwards;
+  rotate: 20deg;
+  filter: drop-shadow(0 0 10px #ffffff);
+  box-shadow: 0 0 10px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff;
 }
