@@ -217,7 +217,6 @@ a {
 @mixin loading_element {
    position: relative;
    background-color: rgb(227, 227, 231);
-   // border: 1px solid transparent;
    overflow: hidden;
 
    &:before {

@@ -37,7 +37,8 @@
    margin-bottom: 20px;
 
    &__item {
-      flex: 0 1 auto;
+      flex: 0 1 300px;
+      aspect-ratio: 1;
    }
 
    &__info {
@@ -113,15 +114,12 @@
    &__additional {
       display: flex;
       flex-direction: column;
-      // gap: 8px;
       font-size: 16px;
       font-weight: 500;
 
    }
 
    &__contactsHead {
-      // position: relative;
-      // right: 8px;
       font-weight: 700;
       display: flex;
       gap: 5px;
@@ -250,9 +248,7 @@
 
       &:focus {
          color: #000;
-         background-color: #ffffffcc;
          background-color: #53586128;
-         // border: 1px solid #46464638;
 
       }
    }
@@ -303,22 +299,12 @@
       &__contacts {
          padding: 2px;
       }
-
-      // flex-direction: column;
-
-      // &__photo {
-      //    border-radius: 20px;
-      // }
    }
 }
 
 @media (max-width: 576px) {
    .info {
       flex-direction: column;
-
-      // &__photo {
-      //    border-radius: 20px;
-      // }
    }
 }
 
@@ -326,7 +312,6 @@
    position: relative;
    border-radius: 20px;
    white-space: nowrap;
-   // margin-bottom: 5px;
    max-height: 30px;
 
    &__text {
@@ -345,10 +330,8 @@
    }
 
    &__inputContainer {
-      // margin-bottom: 12px;
       position: relative;
       bottom: 1px;
-      // width: 100%;
    }
 
    input {
@@ -369,5 +352,134 @@
          border: 1px solid #46464638;
       }
 
+   }
+}
+
+@mixin loadingItem {
+   background-color: #53586128;
+}
+
+@mixin loading_element {
+   position: relative;
+   background-color: #53586128;
+   overflow: hidden;
+
+   &:before {
+      content: '';
+      background-color: #ffffff;
+      position: absolute;
+      bottom: -100%;
+      left: -25%;
+      height: 400%;
+      width: 20%;
+      animation: loading 2s linear 0s infinite normal forwards;
+      rotate: 20deg;
+      filter: drop-shadow(0 0 10px #ffffff);
+      box-shadow: 0 0 10px #fff,
+         0 0 3px #fff,
+         0 0 4px #fff,
+         0 0 5px #fff,
+         0 0 10px #fff;
+   }
+}
+
+@keyframes loading {
+   0% {
+      left: -25%;
+   }
+
+   50% {
+      left: 200%;
+   }
+
+   100% {
+      left: 200%;
+   }
+}
+
+.infoLoading {
+   background-color: rgb(237, 237, 243);
+   box-shadow: 0 0 10px #0000006b;
+   border-radius: 20px;
+   display: flex;
+   align-items: start;
+   justify-content: left;
+   gap: 20px;
+   padding: 20px;
+   margin-bottom: 20px;
+
+   &__photo {
+      @include loading_element;
+      flex: 0 1 300px;
+      width: auto;
+      aspect-ratio: 1;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+   }
+
+   &__info {
+      flex: 1 1 auto;
+      overflow: hidden;
+   }
+
+
+   &__name {
+      @include loading_element;
+      height: 28px;
+      width: 200px;
+      max-width: 100%;
+      border-radius: 14px;
+   }
+
+   &__status {
+      @include loading_element;
+      height: 18px;
+      margin: 6px 0 6px 7px;
+      width: 50%;
+      border-radius: 9px;
+   }
+
+   &__additional {
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+      font-weight: 500;
+   }
+
+   &__contacts {
+      padding: 10px;
+      border: 1px solid transparent;
+
+   }
+
+   &__looking {
+      @include loading_element;
+      height: 16px;
+      width: 175px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+   }
+
+   &__contactsHead {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      justify-content: center
+   }
+
+   &__contactsHeader {
+      @include loading_element;
+      height: 16px;
+      width: 70px;
+      border-radius: 8px;
+   }
+
+   &__contactName {
+      @include loading_element;
+      height: 18px;
+      margin: 0 0 0 7px;
+      width: 50%;
+      border-radius: 9px;
    }
 }
