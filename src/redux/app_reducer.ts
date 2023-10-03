@@ -1,16 +1,14 @@
-import { getAuthData } from "./auth_reducer.ts";
-
+import { getAuthData } from "./auth_reducer";
 
 let INIT_SUCCESS: 'app/INIT_SUCCESS' = 'app/INIT_SUCCESS';
 
 type initSuccessActionType = {
    type: typeof INIT_SUCCESS
 }
-
 let initialState = {
    initialized: false as boolean,
 }
-export type initialStateType = typeof initialState;
+type initialStateType = typeof initialState;
 
 const app_reducer = (state = initialState, action: any): initialStateType => {
    switch (action.type) {

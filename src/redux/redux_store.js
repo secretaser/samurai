@@ -2,7 +2,6 @@ import { applyMiddleware, compose, combineReducers, legacy_createStore as create
 import dialogs_reducer from "./dialogs_reducer.ts";
 import profile_reducer from "./profile_reducer.ts";
 import navbar_reducer from "./navbar_reducer";
-import me_reducer from "./me_reducer";
 import users_reducer from "./users_reducer";
 import auth_reducer from "./auth_reducer.ts";
 import thunkMiddleWare from 'redux-thunk';
@@ -11,7 +10,6 @@ import app_reducer from "./app_reducer.ts";
 
 
 let reducers = combineReducers({
-   me: me_reducer,
    dialogsPage: dialogs_reducer,
    profilePage: profile_reducer,
    navBarData: navbar_reducer,

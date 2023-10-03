@@ -7,7 +7,7 @@ import { compose } from 'redux';
 let mapStateToProps = (state) => {
    return {
       dialogs: state.dialogsPage,
-      me: state.me,
+      me: state.auth.userId,
    }
 };
 

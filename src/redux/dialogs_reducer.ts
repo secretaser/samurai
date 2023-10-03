@@ -1,34 +1,12 @@
 import { reset } from "redux-form";
+import { dialogsDataType, meType } from "../types/types";
 
-let SEND_MESSAGE: 'dialogs/SEND-MESSAGE' = 'dialogs/SEND-MESSAGE';
-
-type dialogsDataType = Array<dialogType>
-type meType = {
-   name: string
-   id: number
-}
-type dialogType = {
-   name: string
-   id: number
-   avaLink: string
-   mesData: Array<messageType>
-}
-type messageType = {
-   id: number
-   authorID: number
-   text: string
-}
+let SEND_MESSAGE = 'dialogs/SEND-MESSAGE';
 
 type initialStateType = {
-   me: meType
    dialogsData: dialogsDataType
 }
-
 let initialState: initialStateType = {
-   me: {
-      name: "secretaser",
-      id: 228,
-   },
    dialogsData: [
       {
          name: "Mr. Biceps",
@@ -69,7 +47,6 @@ let initialState: initialStateType = {
             { id: 0, authorID: 3, text: 'Привет, спиш?...' },
             { id: 1, authorID: 3, text: 'Как дела?' },
             { id: 2, authorID: 3, text: 'Как погода?' },
-            { id: 2, authorID: 228, text: 'Хватит мне написывать' },
          ],
       },
       {
@@ -80,7 +57,6 @@ let initialState: initialStateType = {
             { id: 0, authorID: 4, text: 'Привет, спиш?...' },
             { id: 1, authorID: 4, text: 'Как дела?' },
             { id: 2, authorID: 4, text: 'Как погода?' },
-            { id: 2, authorID: 228, text: 'Почему все спрашивают меня про погоду' },
          ],
       }
    ],
@@ -93,7 +69,7 @@ const dialogs_reducer = (state = initialState, action: any): initialStateType =>
          let dialog = state.dialogsData[action.dialogId];
          let newMessage = {
             id: dialog.mesData.length,
-            authorID: state.me.id,
+            authorID: action.sender,
             text: action.newMessageBody
          };
          return {
@@ -120,14 +96,15 @@ type sendMessageActionType = {
    type: typeof SEND_MESSAGE
    dialogId: number
    newMessageBody: string
+   sender: number
 }
 
-export const sendMessage = (id: number, newMessageBody: string): sendMessageActionType => {
-   return ({ type: SEND_MESSAGE, dialogId: id, newMessageBody, });
+export const sendMessage = (id: number, newMessageBody: string, sender: number): sendMessageActionType => {
+   return ({ type: SEND_MESSAGE, dialogId: id, newMessageBody, sender });
 }
 
-export const sendMessageThunk = (id: number, newMessageBody: string) => (dispatch) => {
-   dispatch(sendMessage(id, newMessageBody));
+export const sendMessageThunk = (id: number, newMessageBody: string, sender: number) => (dispatch: any) => {
+   dispatch(sendMessage(id, newMessageBody, sender));
    dispatch(reset('addMessage'));
 };
 

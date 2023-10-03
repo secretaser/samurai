@@ -1,5 +1,6 @@
 import { reset, stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
+import { photosType, postType, profileType } from "../types/types";
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_PROFILE = 'profile/SET_PROFILE';
@@ -8,35 +9,6 @@ const DELETE_POST = 'profile/DELETE_POST';
 const SET_PHOTO_SUCCESS = 'profile/SET_PHOTO_SUCCESS';
 const SET_PROFILE_INFO_SUCCESS = 'profile/SET_PROFILE_INFO_SUCCESS'
 const TOGGLE_INFO_IS_FETCHING = 'profile/TOGGLE_INFO_IS_FETCHING';
-
-type postType = {
-   id: number
-   authorID: number
-   likes: number
-   text: string
-}
-type contactsType = {
-   github: string | null
-   vk: string | null
-   facebook: string | null
-   instagram: string | null
-   twitter: string | null
-   website: string | null
-   youtube: string | null
-   mainLink: string | null
-}
-type profileType = {
-   userId: number
-   lookingForAJob: boolean
-   lookingForAJobDescription: string | null
-   fullName: string
-   contacts: contactsType
-
-   photos: {
-      small: string | null
-      large: string | null
-   }
-}
 
 let initialState = {
    postData: [
@@ -48,10 +20,11 @@ let initialState = {
    profile: null as profileType | null,
    status: '',
    isFetching: false,
+   newPostText: '',
 }
-export type initialStateType = typeof initialState
+type initialStateType = typeof initialState
 
-const profile_reducer = (state = initialState, action: any) => {
+const profile_reducer = (state = initialState, action: any): initialStateType => {
    switch (action.type) {
       case ADD_POST: {
          let newPost = {
@@ -80,8 +53,7 @@ const profile_reducer = (state = initialState, action: any) => {
       };
 
       case SET_PHOTO_SUCCESS: {
-         // debugger
-         return { ...state, profile: { ...state.profile, photos: action.photos } }
+         return { ...state, profile: { ...state.profile, photos: action.photos } as profileType }
       };
       case SET_PROFILE_INFO_SUCCESS: {
          return {
@@ -101,40 +73,69 @@ const profile_reducer = (state = initialState, action: any) => {
    }
 };
 
+// ACTION CREATORS TYPES
+type addPostType = {
+   type: typeof ADD_POST,
+   postBody: string
+}
+type deletePostType = {
+   type: typeof DELETE_POST,
+   postId: number
+}
+type setProfileType = {
+   type: typeof SET_PROFILE,
+   profile: profileType
+}
+type setStatusType = {
+   type: typeof SET_STATUS,
+   status: string
+}
+type setPhotoSuccessType = {
+   type: typeof SET_PHOTO_SUCCESS,
+   photos: photosType
+}
+type setProfileInfoSuccessType = {
+   type: typeof SET_PROFILE_INFO_SUCCESS,
+   info: profileType
+}
+type toggleInfoIsFetchingType = {
+   type: typeof TOGGLE_INFO_IS_FETCHING,
+   isFetching: boolean
+}
 // ACTION CREATORS
-export const addPost = (postBody) => ({ type: ADD_POST, postBody });
+export const addPost = (postBody: string): addPostType => ({ type: ADD_POST, postBody });
 
-export const deletePost = (postId) => ({ type: DELETE_POST, postId });
+export const deletePost = (postId: number): deletePostType => ({ type: DELETE_POST, postId });
 
-export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
+export const setProfile = (profile: profileType): setProfileType => ({ type: SET_PROFILE, profile });
 
-export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const setStatus = (status: string): setStatusType => ({ type: SET_STATUS, status });
 
-export const setPhotoSuccess = (photos) => ({ type: SET_PHOTO_SUCCESS, photos });
+export const setPhotoSuccess = (photos: photosType): setPhotoSuccessType => ({ type: SET_PHOTO_SUCCESS, photos });
 
-export const setProfileInfoSuccess = (info) => ({ type: SET_PROFILE_INFO_SUCCESS, info });
+export const setProfileInfoSuccess = (info: profileType): setProfileInfoSuccessType => ({ type: SET_PROFILE_INFO_SUCCESS, info });
 
-export const toggleInfoIsFetching = (isFetching) => ({ type: TOGGLE_INFO_IS_FETCHING, isFetching });
+export const toggleInfoIsFetching = (isFetching: boolean): toggleInfoIsFetchingType => ({ type: TOGGLE_INFO_IS_FETCHING, isFetching });
 
 // THUNKS
-export const addPostThunk = (postBody) => (dispatch) => {
+export const addPostThunk = (postBody: string) => (dispatch: any) => {
    dispatch(addPost(postBody));
    dispatch(reset('newPost'));
 };
 
-export const getProfile = (id) => async (dispatch) => {
+export const getProfile = (id: number) => async (dispatch: any) => {
    dispatch(toggleInfoIsFetching(true))
    let data = await profileAPI.getProfile(id);
    dispatch(setProfile(data));
    dispatch(toggleInfoIsFetching(false))
 };
 
-export const getStatus = (id) => async (dispatch) => {
+export const getStatus = (id: number) => async (dispatch: any) => {
    let data = await profileAPI.getStatus(id);
    dispatch(setStatus(data));
 };
 
-export const updateStatus = (status) => async (dispatch) => {
+export const updateStatus = (status: string) => async (dispatch: any) => {
    try {
       let data = await profileAPI.updateStatus(status);
       if (data.resultCode === 0) dispatch(setStatus(status));
@@ -143,12 +144,12 @@ export const updateStatus = (status) => async (dispatch) => {
    }
 };
 
-export const savePhoto = (photo) => async (dispatch) => {
+export const savePhoto = (photo: any) => async (dispatch: any) => {
    let data = await profileAPI.savePhoto(photo);
    if (data.resultCode === 0) dispatch(setPhotoSuccess(data.data.photos));
 };
 
-export const saveInfo = (info) => async (dispatch) => {
+export const saveInfo = (info: profileType) => async (dispatch: any) => {
    let data = await profileAPI.saveInfo(info);
    if (data.resultCode === 0) {
       dispatch(setProfileInfoSuccess(info));

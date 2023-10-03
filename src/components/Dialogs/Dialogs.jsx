@@ -5,7 +5,6 @@ import { Route, Routes } from 'react-router-dom';
 import Chat_container from './Chat/Chat_container';
 
 const Dialogs = (props) => {
-   // debugger;
    let getLastMes = (dialog) => {
       return dialog.mesData[dialog.mesData.length - 1].text;
    };
