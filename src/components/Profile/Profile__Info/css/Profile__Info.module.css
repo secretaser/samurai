@@ -299,6 +299,31 @@
     left: 200%;
   }
 }
+.loadingCover {
+  position: relative;
+  background-color: #D5D6DC;
+  overflow: hidden;
+  height: 200px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4196078431);
+}
+.loadingCover:before {
+  content: "";
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -100%;
+  left: -25%;
+  height: 400%;
+  width: 20%;
+  animation: loading 2s linear 0s infinite normal forwards;
+  rotate: 20deg;
+  filter: drop-shadow(0 0 10px #ffffff);
+  box-shadow: 0 0 10px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff;
+}
+
 .infoLoading {
   background-color: rgb(237, 237, 243);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4196078431);
@@ -312,7 +337,7 @@
 }
 .infoLoading__photo {
   position: relative;
-  background-color: rgba(83, 88, 97, 0.1568627451);
+  background-color: #D5D6DC;
   overflow: hidden;
   flex: 0 1 300px;
   width: auto;
@@ -340,7 +365,7 @@
 }
 .infoLoading__name {
   position: relative;
-  background-color: rgba(83, 88, 97, 0.1568627451);
+  background-color: #D5D6DC;
   overflow: hidden;
   height: 28px;
   width: 200px;
@@ -362,7 +387,7 @@
 }
 .infoLoading__status {
   position: relative;
-  background-color: rgba(83, 88, 97, 0.1568627451);
+  background-color: #D5D6DC;
   overflow: hidden;
   height: 18px;
   margin: 6px 0 6px 7px;
@@ -394,7 +419,7 @@
 }
 .infoLoading__looking {
   position: relative;
-  background-color: rgba(83, 88, 97, 0.1568627451);
+  background-color: #D5D6DC;
   overflow: hidden;
   height: 16px;
   width: 175px;
@@ -422,7 +447,7 @@
 }
 .infoLoading__contactsHeader {
   position: relative;
-  background-color: rgba(83, 88, 97, 0.1568627451);
+  background-color: #D5D6DC;
   overflow: hidden;
   height: 16px;
   width: 70px;
@@ -443,7 +468,7 @@
 }
 .infoLoading__contactName {
   position: relative;
-  background-color: rgba(83, 88, 97, 0.1568627451);
+  background-color: #D5D6DC;
   overflow: hidden;
   height: 18px;
   margin: 0 0 0 7px;

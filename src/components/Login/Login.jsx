@@ -3,7 +3,7 @@ import style from './css/Login.module.css';
 import { Input, InputAuth, createAuthField } from '../common/FormsControls/FormsControls';
 import { required } from '../../utils/validators/validators';
 import { connect } from 'react-redux';
-import { login } from '../../redux/auth_reducer';
+import { login } from '../../redux/auth_reducer.ts';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -50,7 +50,7 @@ const Login = (props) => {
    }
    return (
       <div className={style.content}>
-         <div className={style.header}>Wellcum</div>
+         <div className={style.header}>Welcome</div>
          <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
       </div>)
 }

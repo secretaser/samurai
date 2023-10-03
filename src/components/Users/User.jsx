@@ -1,5 +1,5 @@
 import style from './css/Users.module.css';
-// import ProfileDefPicSmall from '../../assets/images/ProfileDefPicSmall.jfif';
+import profileDef from '../../assets/images/profileicon.jpg';
 import { NavLink } from 'react-router-dom';
 
 const User = ({ user, followingInProgress, unfollow, follow, isAuth, ProfileDefPicSmall }) => {
@@ -16,8 +16,7 @@ const User = ({ user, followingInProgress, unfollow, follow, isAuth, ProfileDefP
          <div className={style.left}>
             <div className={style.image}>
                <NavLink to={'/profile/' + user.id}>
-                  <img src={user.photos.small ?
-                     user.photos.small : ProfileDefPicSmall} alt="" />
+                  <img src={user.photos.small || profileDef} alt="" />
                </NavLink>
             </div>
 
@@ -32,15 +31,15 @@ const User = ({ user, followingInProgress, unfollow, follow, isAuth, ProfileDefP
          <div className={style.central}>
             <NavLink to={'/profile/' + user.id}><div className={style.name}>{cutText(user.name)}</div></NavLink>
             <div className={style.location}>
-               {'u.location.city'}, {'u.location.country'}
+               id{user.id}
             </div>
             <div className={style.status}>{cutText(user.status)}</div>
          </div>
 
          <div className={style.actions}>
-            <button className={style.buttonCome}>Зайти</button>
-            <button className={style.buttonSmoke}>Покурить</button>
-            <button className={style.buttonBother}>Доебаться</button>
+            <button className={style.buttonCome}>text</button>
+            <button className={style.buttonSmoke}>wink</button>
+            <button className={style.buttonBother}>block</button>
          </div>
       </div>)
 };

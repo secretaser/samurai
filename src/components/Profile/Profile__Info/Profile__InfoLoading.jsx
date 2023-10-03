@@ -10,8 +10,8 @@ const Profile__InfoLoaidng = () => {
    }
    return (
       <div>
-         <div className={style.content__cover}>
-            <img src='https://midag.ru/wp-content/uploads/2022/11/religiya-%E2%84%9645_1-2.jpg' alt="" />
+         <div className={style.loadingCover}>
+            <img src='#' alt="" />
          </div>
 
          <div className={style.content__item}>

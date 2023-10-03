@@ -16,7 +16,8 @@ const Header = (props) => {
                {props.isAuth ?
                   <div className={style.logged}>
                      <NavLink className={style.logged__login} to={`/profile/${props.userId}`}>{props.login}</NavLink><button className={style.logged__icon} onClick={props.logout}><img src='https://cdn-icons-png.flaticon.com/512/152/152534.png' alt="" /></button>
-                     <NavLink className={style.logged__pic} to={`/profile/${props.userId}`}><img src={props.ava} alt="" /></NavLink></div>
+                     {/* <NavLink className={style.logged__pic} to={`/profile/${props.userId}`}><img src={props.ava} alt="" /></NavLink> */}
+                  </div>
                   :
                   <NavLink to={'/login'}>Login</NavLink>}
             </div>

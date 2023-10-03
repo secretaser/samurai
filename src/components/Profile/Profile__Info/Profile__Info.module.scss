@@ -361,7 +361,7 @@
 
 @mixin loading_element {
    position: relative;
-   background-color: #53586128;
+   background-color: #D5D6DC;
    overflow: hidden;
 
    &:before {
@@ -397,7 +397,18 @@
    }
 }
 
+.loadingCover {
+   @include loading_element;
+   height: 200px;
+   border-radius: 20px;
+   overflow: hidden;
+   margin-bottom: 20px;
+   border-radius: 20px;
+   box-shadow: 0 0 10px #0000006b;
+}
+
 .infoLoading {
+
    background-color: rgb(237, 237, 243);
    box-shadow: 0 0 10px #0000006b;
    border-radius: 20px;

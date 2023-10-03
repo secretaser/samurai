@@ -1,8 +1,5 @@
 .posts {
    &__post {
-      div {
-         // border: 1px solid #000;
-      }
 
       display: flex;
       // margin-bottom: 10px;
@@ -16,10 +13,16 @@
    }
 
    &__pic {
+      flex: 0 0 70px;
+      height: 70px;
       border-radius: 50%;
-      background-color: #454d5e;
-      min-width: 50px;
-      min-height: 50px;
+      overflow: hidden;
+
+      img {
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+      }
 
    }
 
@@ -67,5 +70,65 @@
       bottom: 0;
       right: 50%;
       transform: translate(50%);
+   }
+}
+
+@mixin loadingItem {
+   background-color: #53586128;
+}
+
+@mixin loading_element {
+   position: relative;
+   background-color: #D5D6DC;
+   overflow: hidden;
+
+   &:before {
+      content: '';
+      background-color: #ffffff;
+      position: absolute;
+      bottom: -100%;
+      left: -25%;
+      height: 400%;
+      width: 20%;
+      animation: loading 2s linear 0s infinite normal forwards;
+      rotate: 20deg;
+      filter: drop-shadow(0 0 10px #ffffff);
+      box-shadow: 0 0 10px #fff,
+         0 0 3px #fff,
+         0 0 4px #fff,
+         0 0 5px #fff,
+         0 0 10px #fff;
+   }
+}
+
+@keyframes loading {
+   0% {
+      left: -25%;
+   }
+
+   50% {
+      left: 200%;
+   }
+
+   100% {
+      left: 200%;
+   }
+}
+
+.loading {
+   &__pic {
+      @include loading_element;
+      flex: 0 0 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+   }
+
+   &__posttext {
+      @include loading_element;
+      height: 28px;
+      flex: 1 0 auto;
+      overflow: hidden;
+      border-radius: 14px;
    }
 }

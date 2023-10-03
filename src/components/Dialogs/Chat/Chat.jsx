@@ -7,7 +7,7 @@ const Chat = (props) => {
    let messages = props.mesData.map(message => <Message text={message.text} sender={message.authorID} me={props.me} />);
 
    let addNewMessage = (values) => {
-      props.sendMessage(props.chat.id, values.newMessageBody);
+      props.sendMessageThunk(props.chat.id, values.newMessageBody);
    }
 
    return (

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { sendMessage } from '../../../redux/dialogs_reducer';
+import { sendMessageThunk } from '../../../redux/dialogs_reducer.ts';
 import Chat from './Chat';
 
 let mapStateToProps = (state, props) => {
@@ -10,5 +10,5 @@ let mapStateToProps = (state, props) => {
    }
 }
 
-const Chat_container = connect(mapStateToProps, { sendMessage })(Chat)
+const Chat_container = connect(mapStateToProps, { sendMessageThunk })(Chat)
 export default Chat_container;

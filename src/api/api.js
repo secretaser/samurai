@@ -2,8 +2,7 @@ import axios from "axios"
 
 const instance = axios.create({
    withCredentials: true,
-   headers: { 'API-KEY': '06391572-b7e9-4cd6-8560-9a483e17805d' },
-   // headers: { 'API-KEY': '06391572-b7e9-4cd6-0000-9a483e12345123214352134' },
+   headers: { 'API-KEY': 'b6363c64-81dc-4b7f-9c29-4d86d82558ef' },
    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
 });
 
@@ -25,9 +24,13 @@ export const usersAPI = {
 export const authAPI = {
    // в уроках это me()
    checkAuth() {
-      return instance.get(`auth/me`).then(response => response.data);
+      return instance.get(`auth/me`).then(response => {
+         console.log('me response');
+         console.log(response);
+         return response.data
+      });
    },
-   login(email, password, rememberMe = false, captcha = null) {
+   login(email, password, rememberMe = false, captcha) {
       const payload = { email, password, rememberMe, captcha };
       console.log(payload);
 

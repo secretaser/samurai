@@ -1,8 +1,9 @@
 import Preloader from '../../common/Preloader/Preloader';
 import React, { useEffect, useState } from 'react';
 import style from './css/Profile__Info.module.css'
-import ProfileDefPicSmall from './../../../assets/images/ProfileDefPicSmall.jfif';
+import ProfileDefPicSmall from './../../../assets/images/profileicon.jpg';
 import ProfileDataForm from './ProfileDataForm';
+import bg from './../../../assets/images/bg.png'
 
 const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, saveInfo, isFetching }) => {
 
@@ -10,7 +11,7 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, save
       let newProfile = {
          ...profile,
          lookingForAJob: formData.lookingForAJob,
-         contacts: { ...profile.contacts, ...formData.contacts }
+         contacts: { ...profile.contacts, ...formData.contacts },
       }
       for (let i = 0; i < Object.keys(newProfile.contacts).length; i++) {
          if (newProfile.contacts[Object.keys(newProfile.contacts)[i]]
@@ -43,24 +44,22 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, save
       return (
          <div>
             <div className={style.content__cover}>
-               <img src='https://midag.ru/wp-content/uploads/2022/11/religiya-%E2%84%9645_1-2.jpg' alt="" />
+               <img src={bg} alt="" />
             </div>
             <div className={style.content__item}>
-               {isFetching ? <Preloader /> :
-                  <div className={style.info}>
-                     <div className={style.info__item}>
-                        <div className={style.info__photo}>
-                           <img src={profile.photos.large || ProfileDefPicSmall} alt="" />
-                           {isOwner && <div className={style.info__photo__upd}>
-                              <div className={style.info__photo__upd__icon}>+</div>
-                           </div>}
-                           {isOwner && <input type='file' className={style.info__updatePhoto} onChange={onMainPhotoSelected} />}
-                        </div>
+               <div className={style.info}>
+                  <div className={style.info__item}>
+                     <div className={style.info__photo}>
+                        <img src={profile.photos.large || ProfileDefPicSmall} alt="" />
+                        {isOwner && <div className={style.info__photo__upd}>
+                           <div className={style.info__photo__upd__icon}>+</div>
+                        </div>}
+                        {isOwner && <input type='file' className={style.info__updatePhoto} onChange={onMainPhotoSelected} />}
                      </div>
-                     {isOwner ? <ProfileDataForm initialValues={profile} profile={profile} status={status} updateStatus={updateStatus} onSubmit={onSubmit} /> :
-                        <ProfileData profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} goToEditmode={() => { setEditMode(true) }} />}
                   </div>
-               }
+                  {isOwner ? <ProfileDataForm initialValues={profile} profile={profile} status={status} updateStatus={updateStatus} onSubmit={onSubmit} /> :
+                     <ProfileData profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} goToEditmode={() => { setEditMode(true) }} />}
+               </div>
             </div>
          </div >
       )
