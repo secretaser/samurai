@@ -1,11 +1,18 @@
+import React from 'react';
 import style from './css/Paginator.module.css';
 
+type propsType = {
+   currentPage: number
+   onPageChange: (pageNumber: number) => void
+   totalItemsCount: number
+   pageSize?: number
+}
 
-const Paginator = ({ currentPage, onPageChange, totalItemsCount, pageSize }) => {
+const Paginator: React.FC<propsType> = ({ currentPage, onPageChange, totalItemsCount, pageSize = 5 }) => {
    let pagesCount = Math.ceil(totalItemsCount / pageSize);
-   let buttons = [];
-   let topBorder;
-   let bottomBorder;
+   let buttons: Array<number> = [];
+   let topBorder: number;
+   let bottomBorder: number;
    let buttonsCount = 5;
 
    if (buttonsCount >= pagesCount) {

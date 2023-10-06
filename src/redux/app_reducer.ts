@@ -1,6 +1,6 @@
-import { getAuthData } from "./auth_reducer";
+import { getAuthData } from "./auth_reducer.ts";
 
-let INIT_SUCCESS: 'app/INIT_SUCCESS' = 'app/INIT_SUCCESS';
+let INIT_SUCCESS = 'app/INIT_SUCCESS';
 
 type initSuccessActionType = {
    type: typeof INIT_SUCCESS

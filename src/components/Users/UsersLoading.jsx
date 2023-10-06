@@ -1,5 +1,5 @@
 import style from './css/Users.module.css';
-import Paginator from '../common/Paginator/Paginator';
+import Paginator from '../common/Paginator/Paginator.tsx';
 import UserLoading from './UserLoading';
 
 const UsersLoading = (props) => {
