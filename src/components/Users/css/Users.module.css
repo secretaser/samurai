@@ -45,6 +45,16 @@ a {
   overflow: hidden;
   border-radius: 50%;
 }
+.left .image .vector {
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  transition: all 0.7s;
+}
+.left .image:hover .vector {
+  opacity: 0.9;
+  transition: all 0.3s;
+}
 .left .image img {
   width: 100%;
   height: 100%;
@@ -98,9 +108,8 @@ a {
 .name {
   display: inline-block;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 20px;
+  word-break: break-word;
+  font-size: 22px;
   margin-bottom: 5px;
 }
 
@@ -110,6 +119,7 @@ a {
 }
 
 .status {
+  word-break: break-word;
   margin-bottom: 10px;
   font-size: 18px;
 }

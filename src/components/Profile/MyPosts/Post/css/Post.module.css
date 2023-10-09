@@ -1,3 +1,6 @@
+.posts {
+  overflow: auto;
+}
 .posts__post {
   display: flex;
   padding: 20px;
@@ -13,6 +16,7 @@
   height: 70px;
   border-radius: 50%;
   overflow: hidden;
+  align-self: start;
 }
 .posts__pic img {
   object-fit: cover;
@@ -20,6 +24,7 @@
   height: 100%;
 }
 .posts__posttext {
+  word-break: break-word;
   white-space: pre-wrap;
   font-size: 20px;
   flex: 1 1 auto;
@@ -47,7 +52,6 @@
 }
 .posts__count {
   color: rgba(27, 31, 39, 0.8235294118);
-  flex: 0 0 auto;
   font-size: 20px;
   font-weight: 600;
   position: absolute;

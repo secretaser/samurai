@@ -1,8 +1,9 @@
 .posts {
+   overflow: auto;
+
    &__post {
 
       display: flex;
-      // margin-bottom: 10px;
       padding: 20px;
       align-items: center;
       gap: 20px;
@@ -17,6 +18,7 @@
       height: 70px;
       border-radius: 50%;
       overflow: hidden;
+      align-self: start;
 
       img {
          object-fit: cover;
@@ -27,6 +29,7 @@
    }
 
    &__posttext {
+      word-break: break-word;
       white-space: pre-wrap;
       font-size: 20px;
       flex: 1 1 auto;
@@ -39,7 +42,6 @@
       align-items: center;
       height: 55px;
       flex: 0 0 40px;
-      // overflow: hidden;
       position: relative;
 
    }
@@ -64,7 +66,7 @@
 
    &__count {
       color: #1b1f27d2;
-      flex: 0 0 auto;
+      // flex: 0 0 auto;
       font-size: 20px;
       font-weight: 600;
       position: absolute;

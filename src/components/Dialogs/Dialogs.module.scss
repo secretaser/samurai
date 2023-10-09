@@ -13,11 +13,19 @@
 }
 
 .dialogs {
-   // не работает какого-то хуя
    flex: 0 0 auto;
    max-width: 220px;
    display: flex;
    flex-direction: column;
    justify-content: flex-start;
    gap: 10px;
+}
+
+.placeholder {
+   font-size: 24px;
+   font-style: italic;
+   margin: auto;
+   // flex: 1 1 auto;
+   text-align: center;
+   color: #0000006b;
 }

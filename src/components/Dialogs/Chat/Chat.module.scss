@@ -90,8 +90,9 @@
    flex: 0 1 auto;
 
    &__input {
+
       line-height: 120%;
-      padding: 10px 20px;
+      padding: 10px 10px 10px 20px;
       font-size: 16px;
       min-height: 40px;
       height: 40px;
@@ -125,18 +126,31 @@
          margin-top: auto;
       }
    }
+}
 
-   &__button {
-      display: block;
-      padding: 10px;
-      text-transform: uppercase;
-      font-weight: 700;
-      border-left: 1px solid #454d5e36;
+.button {
+   padding-top: 7px;
+   align-self: flex-start;
+   flex: 0 0 35px;
+   text-transform: uppercase;
+   font-weight: 700;
+   background-color: transparent;
 
-      &:hover {
-         background-color: #fff;
+   &__svg {
+      fill: #454d5ecc;
+      transform: rotate(0);
+      transform-origin: 40% 50%;
+      transition: all 0.1s;
+   }
+
+   &:hover {
+      .button__svg {
+         fill: #39445c;
+         transform: rotate(-45deg);
       }
    }
+
+
 }
 
 .errorMessage {

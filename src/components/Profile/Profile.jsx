@@ -5,7 +5,7 @@ import Profile__InfoLoaidng from './Profile__Info/Profile__InfoLoading';
 
 const Profile = (props) => {
    return (
-      <div>
+      <>
          {props.isFetching || !props.profile ? <Profile__InfoLoaidng /> : <Profile__Info profile={props.profile}
             status={props.status}
             updateStatus={props.updateStatus}
@@ -15,7 +15,7 @@ const Profile = (props) => {
             saveInfo={props.saveInfo}
             isFetching={props.isFetching} />}
          {props.isFetching || !props.profile ? <MyPostsContainerLoading /> : <MyPostsContainer />}
-      </div >
+      </>
    )
 }
 

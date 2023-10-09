@@ -36,6 +36,13 @@
   overflow: hidden;
   border-radius: 50%;
 }
+.info__photo__vector {
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  border-radius: 50%;
+}
 .info__photo img {
   display: block;
   width: 100%;
@@ -60,6 +67,9 @@
 .info__photo__upd__icon {
   color: #fff;
   font-size: 60px;
+}
+.info__photo:hover .info__photo__vector {
+  opacity: 0.9;
 }
 .info__photo:hover .info__photo__upd {
   opacity: 1;

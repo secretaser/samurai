@@ -47,9 +47,19 @@
    }
 
    &__photo {
+
       position: relative;
       overflow: hidden;
       border-radius: 50%;
+
+
+      &__vector {
+         opacity: 0.5;
+         width: 100%;
+         height: 100%;
+         transition: all 0.5s;
+         border-radius: 50%;
+      }
 
       img {
          display: block;
@@ -81,6 +91,9 @@
 
 
       &:hover {
+         .info__photo__vector {
+            opacity: 0.9;
+         }
 
          .info__photo__upd {
             opacity: 1;

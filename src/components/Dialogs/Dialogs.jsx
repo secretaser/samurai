@@ -18,6 +18,9 @@ const Dialogs = (props) => {
             {dialogs}
          </div>
          <Routes>
+            <Route path={`/`} element={<div className={style.placeholder}>Choose a dialog and start chatting!</div>}>
+
+            </Route>
             {chats}
          </Routes>
       </div >
