@@ -11,8 +11,13 @@ const User = ({ user, followingInProgress, unfollow, follow, isAuth, ProfileDefP
    // };
    // const randomColor = 0;
    const setBg = () => {
-      return Math.floor(Math.random() * 16777215).toString(16);
+      let num = 0;
+      for (let i = 0; i < user.name.length; i++) {
+         num += user.name.charCodeAt(i) / (user.name.length * 120);
+      }
+      return Math.floor(num * 4000).toString(16);
    }
+
    return (
       <div className={style.user_container}>
 

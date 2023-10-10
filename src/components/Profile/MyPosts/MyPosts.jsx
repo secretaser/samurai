@@ -7,7 +7,9 @@ const MyPosts = (props) => {
    let posts = [...props.postData].reverse().map(p => <Post key={p.id} likes={p.likes} text={p.text} authorPhoto={props.authorPhoto} />);
 
    let addPost = (values) => {
-      props.addPostThunk(values.newPostBody.trim());
+      if (values.newPostBody.trim()) {
+         props.addPostThunk(values.newPostBody.trim());
+      }
    };
 
    return (

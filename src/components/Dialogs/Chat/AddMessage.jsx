@@ -32,7 +32,6 @@ const AddMessageForm = (props) => {
          textarea = e.target
          textarea.style.height = 0 + 'px'
          textarea.style.height = textarea.scrollHeight + 'px'
-         // console.log(textarea.value.trim());
          return;
       }
       if (!!textarea && e.target.closest('button') && e.target.closest('button').className == style.button) {

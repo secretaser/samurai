@@ -11,7 +11,9 @@ const Chat = (props) => {
    }, [props.mesData]);
 
    let addNewMessage = (values) => {
-      props.sendMessageThunk(props.chat.id, values.newMessageBody.trim(), props.me);
+      if (values.newMessageBody.trim()) {
+         props.sendMessageThunk(props.chat.id, values.newMessageBody.trim(), props.me)
+      }
    }
 
    return (
