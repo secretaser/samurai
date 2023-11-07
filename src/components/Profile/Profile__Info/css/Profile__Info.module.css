@@ -37,7 +37,7 @@
   border-radius: 50%;
 }
 .info__photo__vector {
-  opacity: 0.5;
+  opacity: 1;
   width: 100%;
   height: 100%;
   transition: all 0.5s;
@@ -68,9 +68,6 @@
   color: #fff;
   font-size: 60px;
 }
-.info__photo:hover .info__photo__vector {
-  opacity: 0.9;
-}
 .info__photo:hover .info__photo__upd {
   opacity: 1;
 }
@@ -93,6 +90,25 @@
   font-size: 24px;
   text-transform: uppercase;
   margin-bottom: 4px;
+}
+.info__nameInput {
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  border-radius: 26px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border: 1px solid transparent;
+  padding: 0px 5px 0 5px;
+}
+.info__nameInput:hover {
+  background-color: rgba(83, 88, 97, 0.1568627451);
+}
+.info__nameInput:focus {
+  background-color: #fff;
+  border: 1px solid rgba(70, 70, 70, 0.2196078431);
 }
 .info__additional {
   display: flex;

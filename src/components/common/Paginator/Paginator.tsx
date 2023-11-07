@@ -16,16 +16,16 @@ const Paginator: React.FC<propsType> = ({ currentPage, onPageChange, totalItemsC
    let buttonsCount = 5;
 
    if (buttonsCount >= pagesCount) {
-      bottomBorder = 1;
-      topBorder = pagesCount;
+      bottomBorder = 1
+      topBorder = pagesCount
       buttonsCount = pagesCount
    } else {
       if (buttonsCount % 2) {
-         topBorder = currentPage + Math.floor(buttonsCount / 2);
-         bottomBorder = currentPage - Math.floor(buttonsCount / 2);
+         topBorder = currentPage + Math.floor(buttonsCount / 2)
+         bottomBorder = currentPage - Math.floor(buttonsCount / 2)
       } else {
-         topBorder = currentPage + buttonsCount / 2;
-         bottomBorder = currentPage - buttonsCount / 2 + 1;
+         topBorder = currentPage + buttonsCount / 2
+         bottomBorder = currentPage - buttonsCount / 2 + 1
       }
    }
 

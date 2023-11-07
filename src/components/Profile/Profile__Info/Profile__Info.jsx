@@ -10,13 +10,15 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, save
    const onSubmit = (formData) => {
       let newProfile = {
          ...profile,
+         fullName: formData.fullName,
          lookingForAJob: formData.lookingForAJob,
          contacts: { ...profile.contacts, ...formData.contacts },
       }
       for (let i = 0; i < Object.keys(newProfile.contacts).length; i++) {
          if (newProfile.contacts[Object.keys(newProfile.contacts)[i]]
             !== profile.contacts[Object.keys(newProfile.contacts)[i]] ||
-            newProfile.lookingForAJob !== profile.lookingForAJob) {
+            newProfile.lookingForAJob !== profile.lookingForAJob ||
+            newProfile.fullName !== profile.fullName) {
             delete newProfile.photos;
             saveInfo(newProfile).then(
                () => {
@@ -39,7 +41,11 @@ const Profile__Info = ({ profile, status, updateStatus, isOwner, savePhoto, save
    }
 
    const setBg = () => {
-      return Math.floor(Math.random() * 16777215).toString(16);
+      let num = 0;
+      for (let i = 0; i < profile.fullName.length; i++) {
+         num += profile.fullName.charCodeAt(i) / (profile.fullName.length * 120);
+      }
+      return Math.floor(num * 4000).toString(16);
    }
    if (!profile) {
       return <Preloader />

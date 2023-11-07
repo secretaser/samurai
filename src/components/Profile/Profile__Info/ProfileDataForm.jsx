@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Field, reduxForm } from "redux-form";
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks.tsx";
 import style from './css/Profile__Info.module.css'
 import { InputInfo, createInfoField } from "../../common/FormsControls/FormsControls";
 
@@ -23,7 +23,6 @@ const ProfileDataForm = ({ profile, status, updateStatus, handleSubmit, initialV
    }
 
    useEffect(() => {
-      console.log('mounted');
       window.addEventListener('click', clickHandler)
       return () => {
          window.removeEventListener('click', clickHandler)
@@ -43,7 +42,10 @@ const ProfileDataForm = ({ profile, status, updateStatus, handleSubmit, initialV
 
    return (
       <form className={style.info__info} onSubmit={handleSubmit}>
-         <div className={style.info__name}>{profile.fullName}</div>
+         <div className={style.info__name}>
+            <Field component='input' name='fullName' className={style.info__nameInput}></Field>
+            {/* {profile.fullName} */}
+         </div>
 
          <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 

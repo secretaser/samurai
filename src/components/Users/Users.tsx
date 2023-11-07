@@ -2,28 +2,38 @@ import style from './css/Users.module.css';
 import Paginator from '../common/Paginator/Paginator.tsx';
 import User from './User';
 import React from 'react';
+import { userType } from '../../types/types.ts';
 
-const Users = (props) => {
+type propsType = {
+   totalUsersCount: number
+   pageSize: number
+   users: Array<userType>
+   isFetching: boolean
+   followingInProgress: Array<number>
+   onPageChange: (pageNumber: number) => void
+   follow: (userId: number) => void
+   unfollow: (userId: number) => void
+   isAuth: boolean
+   currentPage: number
+}
 
-   return <>
+const Users: React.FC<propsType> = ({ currentPage, totalUsersCount, pageSize, users, isFetching, followingInProgress, onPageChange, follow, unfollow, isAuth }) => {
 
-      <div className={style.content}>
-         <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />
+   return <div className={style.content}>
+      <Paginator totalItemsCount={totalUsersCount} currentPage={currentPage} onPageChange={onPageChange} pageSize={pageSize} />
 
 
-         {props.users.map(u => (<User
-            key={u.id}
-            user={u}
-            followingInProgress={props.followingInProgress}
-            unfollow={props.unfollow}
-            follow={props.follow}
-            isAuth={props.isAuth}
-            ProfileDefPicSmall={props.ProfileDefPicSmall}
-         />))}
+      {users.map(u => (<User
+         key={u.id}
+         user={u}
+         followingInProgress={followingInProgress}
+         unfollow={unfollow}
+         follow={follow}
+         isAuth={isAuth}
+      />))}
 
-         <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} onPageChange={props.onPageChange} pageSize={props.pageSize} />
-      </div>
-   </>
+      <Paginator totalItemsCount={totalUsersCount} currentPage={currentPage} onPageChange={onPageChange} pageSize={pageSize} />
+   </div>
 };
 
 export default Users;

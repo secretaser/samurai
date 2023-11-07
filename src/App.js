@@ -8,11 +8,11 @@ import { Provider, connect } from "react-redux";
 import { compose } from "redux";
 import { initializeApp } from "./redux/app_reducer.ts";
 import Preloader from "./components/common/Preloader/Preloader";
-import store from './redux/redux_store';
+import store from './redux/redux_store.ts';
 import { lazy, Suspense } from "react";
 
 const ProfileContainer = lazy(() => import("./components/Profile/ProfileContainer"))
-const UsersContainer = lazy(() => import("./components/Users/UsersContainer"))
+const UsersContainer = lazy(() => import("./components/Users/UsersContainer.tsx"))
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
 const Login = lazy(() => import('./components/Login/Login'))
 const Feed = lazy(() => import('./components/Feed/Feed'))
@@ -52,7 +52,6 @@ class App extends React.Component {
                         <Route path="/settings/*" element={<Settings />} />
                         <Route path="/login/*" element={<Login />} />
                         <Route path="/" element={<Navigate to="/profile" />} />
-                        {/* <Route path="/" element={<Navigate to='/profile' />} /> */}
                      </Routes>
                   </div>
                </Suspense>

@@ -54,7 +54,7 @@
 
 
       &__vector {
-         opacity: 0.5;
+         opacity: 1;
          width: 100%;
          height: 100%;
          transition: all 0.5s;
@@ -91,10 +91,6 @@
 
 
       &:hover {
-         .info__photo__vector {
-            opacity: 0.9;
-         }
-
          .info__photo__upd {
             opacity: 1;
          }
@@ -122,6 +118,31 @@
       font-size: 24px;
       text-transform: uppercase;
       margin-bottom: 4px;
+      // border: 1px solid transparent;
+   }
+
+   &__nameInput {
+      background-color: transparent;
+      font-weight: 700;
+      font-size: 24px;
+      text-transform: uppercase;
+      transition: all 0.1s;
+      border-radius: 26px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      border: 1px solid transparent;
+      padding: 0px 5px 0 5px;
+
+      input {}
+
+      &:hover {
+         background-color: #53586128;
+      }
+
+      &:focus {
+         background-color: #fff;
+         border: 1px solid #46464638;
+      }
    }
 
    &__additional {

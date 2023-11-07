@@ -4,7 +4,7 @@ import style from './css/MyPosts.module.css';
 import NewPost from './NewPost';
 
 const MyPosts = (props) => {
-   let posts = [...props.postData].reverse().map(p => <Post key={p.id} likes={p.likes} text={p.text} authorPhoto={props.authorPhoto} />);
+   let posts = [...props.postData].reverse().map(p => <Post key={p.id} likes={p.likes} text={p.text} authorPhoto={props.authorPhoto} name={props.name} />);
 
    let addPost = (values) => {
       if (values.newPostBody.trim()) {

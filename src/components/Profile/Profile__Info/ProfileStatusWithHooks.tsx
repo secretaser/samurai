@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import style from './css/Profile__Info.module.css';
 
-const ProfileStatusWithHooks = (props) => {
+type propsType = {
+   status: string
+   updateStatus: (status: string) => void
+}
+
+type stateType = {
+   editMode: boolean
+   status: string
+}
+
+const ProfileStatusWithHooks: React.FC<propsType> = ({ status, updateStatus }) => {
 
    let [editMode, setEditMode] = useState(false);
-   let [status, setStatus] = useState(props.status);
+   let [localStatus, setStatus] = useState(status);
 
    useEffect(() => {
-      setStatus(props.status)
-   }, [props.status]);
+      setStatus(status)
+   }, [status]);
 
    const activateEditMode = () => {
       setEditMode(true);
@@ -16,8 +26,8 @@ const ProfileStatusWithHooks = (props) => {
    const deactivateEditMode = () => {
       setEditMode(false);
 
-      if (status !== props.status) {
-         props.updateStatus(status);
+      if (localStatus !== status) {
+         updateStatus(localStatus);
       }
    }
 
@@ -27,13 +37,13 @@ const ProfileStatusWithHooks = (props) => {
 
    return (
       <div className={style.status}>
-         {!editMode && <div onClick={activateEditMode} className={style.status__text}>{props.status || 'How are you today?'}</div>}
+         {!editMode && <div onClick={activateEditMode} className={style.status__text}>{status || 'How are you today?'}</div>}
 
          {editMode &&
             <div className={style.status__inputContainer}>
                <input onBlur={deactivateEditMode}
                   onChange={onStatusChange}
-                  value={status}
+                  value={localStatus}
                   placeholder='How are you today?' autoFocus />
             </div>}
       </div>
