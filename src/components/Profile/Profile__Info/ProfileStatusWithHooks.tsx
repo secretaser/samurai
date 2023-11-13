@@ -6,11 +6,6 @@ type propsType = {
    updateStatus: (status: string) => void
 }
 
-type stateType = {
-   editMode: boolean
-   status: string
-}
-
 const ProfileStatusWithHooks: React.FC<propsType> = ({ status, updateStatus }) => {
 
    let [editMode, setEditMode] = useState(false);
